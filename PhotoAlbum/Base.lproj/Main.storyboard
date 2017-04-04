@@ -71,5 +71,40 @@
             </objects>
             <point key="canvasLocation" x="173.59999999999999" y="127.28635682158921"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="f8Y-DW-Acq">
+            <objects>
+                <viewController id="Aed-5L-LhN" customClass="DetailViewController" customModule="PhotoAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xtg-Pn-7uM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pkb-pS-JNH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uRm-1G-Jkq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-j9-vWJ">
+                                <rect key="frame" x="16" y="123" width="343" height="258"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHx-4Z-lnq">
+                                <rect key="frame" x="31" y="416" width="317" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="RHx-4Z-lnq" id="F80-54-TQz"/>
+                        <outlet property="imageView" destination="WP8-j9-vWJ" id="WgB-b3-oIi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wnv-hq-zBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="956" y="122.78860569715144"/>
+        </scene>
     </scenes>
 </document>

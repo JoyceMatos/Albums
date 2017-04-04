@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		250DD1441E933F470017CE51 /* AlbumDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DD1431E933F470017CE51 /* AlbumDataStore.swift */; };
 		250DD1781E94213F0017CE51 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DD1771E94213F0017CE51 /* CollectionViewCell.swift */; };
+		250DD17A1E9427540017CE51 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DD1791E9427540017CE51 /* DetailViewController.swift */; };
 		255D05231E93326D00133BD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255D05221E93326D00133BD7 /* AppDelegate.swift */; };
 		255D05251E93326D00133BD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255D05241E93326D00133BD7 /* ViewController.swift */; };
 		255D05281E93326D00133BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255D05261E93326D00133BD7 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		250DD1431E933F470017CE51 /* AlbumDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDataStore.swift; sourceTree = "<group>"; };
 		250DD1771E94213F0017CE51 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		250DD1791E9427540017CE51 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		255D051F1E93326D00133BD7 /* PhotoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		255D05221E93326D00133BD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		255D05241E93326D00133BD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				255D05241E93326D00133BD7 /* ViewController.swift */,
+				250DD1791E9427540017CE51 /* DetailViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				255D05461E93363600133BD7 /* AlbumAPIClient.swift in Sources */,
 				255D05231E93326D00133BD7 /* AppDelegate.swift in Sources */,
 				250DD1441E933F470017CE51 /* AlbumDataStore.swift in Sources */,
+				250DD17A1E9427540017CE51 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

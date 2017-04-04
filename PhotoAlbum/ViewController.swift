@@ -35,11 +35,19 @@ class ViewController: UIViewController {
         }
     }
     
-    func downloadImage(from url: String) {
-        let url = URL(string: url)
+    func loadImage(from imageURL: String) -> UIImage? {
+        var image: UIImage?
         
-        
+        if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
+            if data != nil {
+                return UIImage(data: data)
+            }
+        }
+        return nil
     }
+    
+    
+
 
 
 }
@@ -57,15 +65,15 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! CollectionViewCell
-        
         let photo = store.photos[indexPath.item]
         
         cell.label.text = "\(photo.id)"
+        cell.image.image = loadImage(from: photo.thumbnailURL)
         cell.backgroundColor = UIColor.blue
-        
         
         return cell
     }
+    
     
     
     
