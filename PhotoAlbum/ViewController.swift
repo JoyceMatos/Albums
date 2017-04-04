@@ -21,9 +21,7 @@ class ViewController: UIViewController {
         print("Hey these are the photos I am printing: \(self.store.photos)")
         
         }
-        
     }
-
 
 
 }
