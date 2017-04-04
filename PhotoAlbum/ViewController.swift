@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // TODO : - This can be part of a protocol
     func loadImage(from imageURL: String) -> UIImage? {
         if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
             if data != nil {
@@ -48,8 +49,9 @@ class ViewController: UIViewController {
         if segue.identifier == "showDetail" {
             let destVC = segue.destination as! DetailViewController
             let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell)
-        // TODO: - Fix indexPAth.item
-            destVC.photoID = store.photos[(indexPath?.item)!].id
+            
+          // TODO: - Fix indexPAth.item
+            destVC.photo = store.photos[(indexPath?.item)!]
         }
     }
 

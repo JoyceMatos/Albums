@@ -20,9 +20,26 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+     //   guard let id = photoID else { print("no id found"); return }
 
-        print("PhotoID: \(photo?.id)")
+        print("Photo: \(photo)")
+        
+        guard let selectedPhoto = photo else {
+            return
+        }
+        
+        imageView.image = loadImage(from: selectedPhoto.url)
+        descriptionLabel.text = photo?.title
     
+    }
+    
+    func loadImage(from imageURL: String) -> UIImage? {
+        if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
+            if data != nil {
+                return UIImage(data: data)
+            }
+        }
+        return nil
     }
 
     
