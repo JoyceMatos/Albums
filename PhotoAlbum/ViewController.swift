@@ -36,8 +36,6 @@ class ViewController: UIViewController {
     }
     
     func loadImage(from imageURL: String) -> UIImage? {
-        var image: UIImage?
-        
         if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
             if data != nil {
                 return UIImage(data: data)
@@ -46,8 +44,14 @@ class ViewController: UIViewController {
         return nil
     }
     
-    
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            let destVC = segue.destination as! DetailViewController
+            let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell)
+        // TODO: - Fix indexPAth.item
+            destVC.photoID = store.photos[(indexPath?.item)!].id
+        }
+    }
 
 
 }

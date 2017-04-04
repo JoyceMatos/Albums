@@ -21,11 +21,10 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
 
 
+        print("PhotoID: \(photo?.id)")
     
     }
 
-    
-    
     
     
     
