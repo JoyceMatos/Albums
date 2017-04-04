@@ -17,24 +17,33 @@ final class AlbumAPIClient {
             return
         }
         let session = URLSession.shared
+
         let task = session.dataTask(with: url) { (data, response, error) in
-            DispatchQueue.main.async {
                 guard let data = data else {
                     return
                 }
-                
+
                 do {
                     let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
+                    DispatchQueue.main.async {
+
                     
                         print("JSON: \(responseJSON)")
                         completion(responseJSON)
+                        
+                    }
 
                 } catch {
                     print(error.localizedDescription)
                 }
+            
+            
+            
+            
             }
-        }
-        task.resume()
+            task.resume()
+
+        
     }
 
 

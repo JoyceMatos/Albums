@@ -10,25 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
+    let store = AlbumDataStore.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+      self.store.getPhotos { (photos) in
        
-        AlbumDataStore.getPhotos { (photos) in
-            DispatchQueue.main.async {
-
-                print("------These are the photos: \(photos)")
-                
+        print("Hey these are the photos I am printing: \(self.store.photos)")
+        
         }
-        }
-        
-      //  print("========ohhhhhhh photos! \(AlbumDataStore.photos)")
-        
-        
     }
-
 
 
 }

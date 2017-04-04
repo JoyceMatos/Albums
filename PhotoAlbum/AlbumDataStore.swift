@@ -11,16 +11,12 @@ import Foundation
 class AlbumDataStore {
     
     static let shared = AlbumDataStore()
-    static var photos = [Photo]()
+    var photos = [Photo]()
     
-    static func getPhotos(completion: @escaping ([Photo]) -> Void) {
-        
+    func getPhotos(completion: @escaping ([Photo]) -> Void) {
         photos.removeAll()
         print("Removing all")
         
-        let photosQueue = DispatchQueue(label: "photos", qos: .userInitiated)
-        photosQueue.async {
-            
         AlbumAPIClient.retrieveJSON { (album) in
                 print("----- Right before my loop ----")
                 for photo in album {
@@ -33,15 +29,12 @@ class AlbumDataStore {
                     
                     let photo = Photo(albumID: albumID, id: id, title: title, url: url, thumbnailURL: thumbnailURL)
                     print("This is the photo: \(photo)")
-                    photos.append(photo)
+                    self.photos.append(photo)
                 }
-                
-            }
+            
+            print("This is where my photos should be ***** \(self.photos)")
+            completion(self.photos)
         }
-        
-        print("This is where my photos should be ***** \(photos)")
-        completion(photos)
-        
     }
 
     
