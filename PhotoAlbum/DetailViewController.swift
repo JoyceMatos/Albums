@@ -19,18 +19,23 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-     //   guard let id = photoID else { print("no id found"); return }
-
-        print("Photo: \(photo)")
+        
+        configureViews()
+    
+    }
+    
+    func configureViews() {
         
         guard let selectedPhoto = photo else {
             return
         }
         
-        imageView.image = loadImage(from: selectedPhoto.url)
+        imageView.image = loadImage(from: selectedPhoto.urlString)
+        
+        descriptionLabel.sizeToFit()
         descriptionLabel.text = photo?.title
-    
+        
+        
     }
     
     func loadImage(from imageURL: String) -> UIImage? {
@@ -41,7 +46,20 @@ class DetailViewController: UIViewController {
         }
         return nil
     }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        
 
+//        UIView.animate(withDuration: 0.30, delay: 0.0, options: .curveEaseIn, animations: {
+//            
+//        }, completion: nil)
+//        
+//        perform(<#T##aSelector: Selector##Selector#>, with: <#T##Any?#>, afterDelay: <#T##TimeInterval#>)
+      //  performSegue(withIdentifier: "photoView", sender: self)
+
+        
+        
+    }
     
     
     

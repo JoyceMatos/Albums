@@ -8,16 +8,16 @@
 
 import Foundation
 
-class AlbumDataStore {
+class DataStore {
     
-    static let shared = AlbumDataStore()
+    static let shared = DataStore()
     var photos = [Photo]()
     
     func getPhotos(completion: @escaping ([Photo]) -> Void) {
         photos.removeAll()
         print("Removing all")
         
-        AlbumAPIClient.retrieveJSON { (album) in
+        APIClient.retrieveJSON { (album) in
                 print("----- Right before my loop ----")
                 for photo in album {
                     
@@ -27,16 +27,21 @@ class AlbumDataStore {
                     let url = photo["url"] as! String
                     let thumbnailURL = photo["thumbnailUrl"] as! String
                     
-                    let photo = Photo(albumID: albumID, id: id, title: title, url: url, thumbnailURL: thumbnailURL)
+                    let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURL: thumbnailURL)
                     print("This is the photo: \(photo)")
                     self.photos.append(photo)
                 }
             
-            print("This is where my photos should be ***** \(self.photos)")
             completion(self.photos)
         }
+    }
+    
+    func getAlbums()  {
+        
+        
     }
 
     
     
 }
+
