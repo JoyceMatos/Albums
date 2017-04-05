@@ -91,7 +91,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let photo = store.photos[indexPath.item]
         
         cell.label.text = "\(photo.id)"
-      //  cell.image.image = loadImage(from: photo.thumbnailURL)
+     //   cell.image.image = loadImage(from: photo.thumbnailURL)
         
         
         // Smooth scrolling but images change

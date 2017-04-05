@@ -13,4 +13,8 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var label: UILabel!
     
+    override func prepareForReuse() {
+        image.image = nil
+    }
+    
 }

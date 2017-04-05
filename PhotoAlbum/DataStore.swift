@@ -31,6 +31,7 @@ class DataStore {
                     print("This is the photo: \(photo)")
                     self.photos.append(photo)
                 }
+            
             completion(self.photos)
         }
     }
