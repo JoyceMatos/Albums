@@ -154,7 +154,7 @@
                                 <state key="normal" title="X"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="Aed-5L-LhN" eventType="touchUpInside" id="QMu-84-4nX"/>
-                                    <segue destination="wvA-hI-YlQ" kind="unwind" identifier="photoView" unwindAction="unwindSegueToSelfWithSegue:" id="gHw-Ol-qIL"/>
+                                    <segue destination="wvA-hI-YlQ" kind="unwind" identifier="photoView" customClass="UnwindDetailViewSegue" customModule="PhotoAlbum" customModuleProvider="target" unwindAction="unwindSegueToSelfWithSegue:" id="gHw-Ol-qIL"/>
                                 </connections>
                             </button>
                         </subviews>

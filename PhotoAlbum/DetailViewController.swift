@@ -49,25 +49,18 @@ class DetailViewController: UIViewController {
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         
-        performSegue(withIdentifier: "photoView", sender: self)
 
+//        UIView.animate(withDuration: 0.30, delay: 0.0, options: .curveEaseIn, animations: {
+//            
+//        }, completion: nil)
+//        
+//        perform(<#T##aSelector: Selector##Selector#>, with: <#T##Any?#>, afterDelay: <#T##TimeInterval#>)
+      //  performSegue(withIdentifier: "photoView", sender: self)
+
+        
+        
     }
     
-    
-   
-
-    
-//    override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
-////        if let id = identifier {
-////            if id == "photoView" {
-////                let unwindSegue = UnwindDetailViewSegue(identifier: id, source: fromViewController, destination: fromViewController)
-////                return unwindSegue
-////            }
-////        }
-//        
-//        
-//        
-//    }
     
     
     
