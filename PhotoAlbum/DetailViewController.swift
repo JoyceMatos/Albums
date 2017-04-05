@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
             return
         }
         
-        imageView.image = loadImage(from: selectedPhoto.url)
+        imageView.image = loadImage(from: selectedPhoto.urlString)
         
         descriptionLabel.sizeToFit()
         descriptionLabel.text = photo?.title

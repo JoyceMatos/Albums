@@ -27,7 +27,7 @@ class DataStore {
                     let url = photo["url"] as! String
                     let thumbnailURL = photo["thumbnailUrl"] as! String
                     
-                    let photo = Photo(albumID: albumID, id: id, title: title, url: url, thumbnailURL: thumbnailURL)
+                    let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURL: thumbnailURL)
                     print("This is the photo: \(photo)")
                     self.photos.append(photo)
                 }

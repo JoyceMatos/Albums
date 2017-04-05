@@ -88,16 +88,19 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! CollectionViewCell
-        let photo = store.photos[indexPath.item]
+        if cell.delegate == nil {
+            cell.delegate = self
+            cell.backgroundColor = UIColor.clear
+
+        }
         
-        cell.label.text = "\(photo.id)"
      //   cell.image.image = loadImage(from: photo.thumbnailURL)
         
         
         // Smooth scrolling but images change
-        cell.image.imageFromServerURL(urlString: photo.thumbnailURL)
+//        cell.image.imageFromServerURL(urlString: photo.thumbnailURL)
         
-        cell.backgroundColor = UIColor.blue
+//        cell.backgroundColor = UIColor.blue
         
         
 //        cell.layer.shouldRasterize = true
@@ -121,12 +124,37 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return sectionInsets
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let currentCell = cell as! CollectionViewCell
+        let photo = store.photos[indexPath.item]
+        currentCell.photo = photo
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
         return sectionInsets.left
     }
 }
 
+
+
+// MARK: - Collection View Cell Delegate 
+extension PhotoViewController: PhotoCellDelegate {
+    
+    func photoCell(_ photoCell: CollectionViewCell, canDisplayPhoto photo: Photo) -> Bool {
+            let visibleIndexPaths = collectionView.indexPathsForVisibleItems
+        
+        var visiblePhotos: Set<Int> = []
+        
+        for indexPath in visibleIndexPaths {
+            let photoAtIndexPath = store.photos[indexPath.item]
+            visiblePhotos.insert(photoAtIndexPath.id)
+        }
+        
+        return visiblePhotos.contains(photo.id)
+    }
+    
+}
 
 // Smooth scrolling but images change
 extension UIImageView {
