@@ -42,7 +42,6 @@ final class Photo {
                 handler(true)
             }
         }).resume()
-        
     }
     
     

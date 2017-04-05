@@ -38,6 +38,8 @@ class DetailViewController: UIViewController {
         
     }
     
+    // NOTE: - Downloading may be okay since it will only happen once
+    
     func loadImage(from imageURL: String) -> UIImage? {
         if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
             if data != nil {

@@ -31,30 +31,12 @@ class PhotoViewController: UIViewController {
     
     func retrievePhotos() {
         self.store.getPhotos { (photos) in
-            
             DispatchQueue.main.async {
                 print("reloading data")
-                
-             //   self.store.getAlbums()
-
                 self.collectionView.reloadData()
-                
-                
-
             }
         }
     }
-    
-    // TODO : - This can be part of a protocol
-    func loadImage(from imageURL: String) -> UIImage? {
-        if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
-            if data != nil {
-                return UIImage(data: data)
-            }
-        }
-        return nil
-    }
-    
     
     
     @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) {
@@ -93,18 +75,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
             cell.backgroundColor = UIColor.clear
 
         }
-        
-     //   cell.image.image = loadImage(from: photo.thumbnailURL)
-        
-        
-        // Smooth scrolling but images change
-//        cell.image.imageFromServerURL(urlString: photo.thumbnailURL)
-        
-//        cell.backgroundColor = UIColor.blue
-        
-        
-//        cell.layer.shouldRasterize = true
-//        cell.layer.rasterizationScale = UIScreen.main.scale
         
         return cell
     }
@@ -155,24 +125,6 @@ extension PhotoViewController: PhotoCellDelegate {
     }
     
 }
-
-// Smooth scrolling but images change
-extension UIImageView {
-    public func imageFromServerURL(urlString: String) {
-        
-        URLSession.shared.dataTask(with: URL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            
-            if error != nil {
-                print(error)
-                return
-            }
-            DispatchQueue.main.async(execute: { () -> Void in
-                let image = UIImage(data: data!)
-                self.image = image
-            })
-            
-        }).resume()
-    }}
 
 
 
