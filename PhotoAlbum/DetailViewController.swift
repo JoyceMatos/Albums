@@ -47,18 +47,11 @@ class DetailViewController: UIViewController {
         return nil
     }
     
+    
+    // NOTE: - Not in use?
     @IBAction func cancelButtonTapped(_ sender: Any) {
         
 
-//        UIView.animate(withDuration: 0.30, delay: 0.0, options: .curveEaseIn, animations: {
-//            
-//        }, completion: nil)
-//        
-//        perform(<#T##aSelector: Selector##Selector#>, with: <#T##Any?#>, afterDelay: <#T##TimeInterval#>)
-      //  performSegue(withIdentifier: "photoView", sender: self)
-
-        
-        
     }
     
     
