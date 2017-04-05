@@ -17,7 +17,6 @@ protocol PhotoCellDelegate: class {
 class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var label: UILabel!
     weak var photo: Photo! {
         didSet {
             setupPhoto()
@@ -29,7 +28,6 @@ class CollectionViewCell: UICollectionViewCell {
     private func setupPhoto() {
         if photo.image != nil {
             image.image = photo.image
-            label.text = photo.title
             return
         }
         
@@ -38,12 +36,9 @@ class CollectionViewCell: UICollectionViewCell {
                 if success {
                     guard self.delegate.photoCell(self, canDisplayPhoto: self.photo) else { return }
                     self.image.alpha = 0.0
-                    self.label.alpha = 0.0
                     self.image.image = self.photo.image
-                    self.label.text = self.photo.title
                     UIView.animate(withDuration: 1.0, animations: {
                         self.image.alpha = 1.0
-                        self.label.alpha = 1.0
                     })
                 } else {
                     // TODO: Give it default image maybe?
@@ -56,7 +51,6 @@ class CollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         image.image = nil
-        label.text = nil
     }
     
 }
