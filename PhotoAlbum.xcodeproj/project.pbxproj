@@ -197,7 +197,7 @@
 				TargetAttributes = {
 					255D051E1E93326C00133BD7 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = A95Z7XMH9W;
+						DevelopmentTeam = U442XCZ4BT;
 						ProvisioningStyle = Automatic;
 					};
 					255D05321E93326D00133BD7 = {
@@ -400,9 +400,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A95Z7XMH9W;
+				DEVELOPMENT_TEAM = U442XCZ4BT;
 				INFOPLIST_FILE = PhotoAlbum/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joyce-Matos.PhotoAlbum";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -414,9 +414,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = A95Z7XMH9W;
+				DEVELOPMENT_TEAM = U442XCZ4BT;
 				INFOPLIST_FILE = PhotoAlbum/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Joyce-Matos.PhotoAlbum";
 				PRODUCT_NAME = "$(TARGET_NAME)";

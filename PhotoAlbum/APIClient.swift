@@ -25,7 +25,8 @@ final class APIClient {
 
                 do {
                     let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
-                    DispatchQueue.main.async {
+                  //  DispatchQueue.main.async {
+                    DispatchQueue.global(qos: .userInitiated).async {
                         completion(responseJSON)
                     }
 

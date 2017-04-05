@@ -31,10 +31,11 @@ class PhotoViewController: UIViewController {
     
     func retrievePhotos() {
         self.store.getPhotos { (photos) in
+            
             DispatchQueue.main.async {
                 print("reloading data")
                 
-                self.store.getAlbums()
+             //   self.store.getAlbums()
 
                 self.collectionView.reloadData()
                 
@@ -90,8 +91,17 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let photo = store.photos[indexPath.item]
         
         cell.label.text = "\(photo.id)"
-        cell.image.image = loadImage(from: photo.thumbnailURL)
+      //  cell.image.image = loadImage(from: photo.thumbnailURL)
+        
+        
+        // Smooth scrolling but images change
+        cell.image.imageFromServerURL(urlString: photo.thumbnailURL)
+        
         cell.backgroundColor = UIColor.blue
+        
+        
+//        cell.layer.shouldRasterize = true
+//        cell.layer.rasterizationScale = UIScreen.main.scale
         
         return cell
     }
@@ -116,4 +126,25 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return sectionInsets.left
     }
 }
+
+
+// Smooth scrolling but images change
+extension UIImageView {
+    public func imageFromServerURL(urlString: String) {
+        
+        URLSession.shared.dataTask(with: URL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                print(error)
+                return
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                self.image = image
+            })
+            
+        }).resume()
+    }}
+
+
 
