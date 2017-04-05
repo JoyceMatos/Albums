@@ -16,10 +16,16 @@ final class APIClient {
         guard let url = URL(string: urlString) else {
             return
         }
+        
         let session = URLSession.shared
+        
+       // let jsonData = try? JSONSerialization.data(withJSONObject: [[String: Any]]())
+
+        
         var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-      //  request.httpBody = json
+      //  request.httpBody = jsona
         
         
         let sessionTask = session.dataTask(with: request) { (data, response, error) in
@@ -27,10 +33,13 @@ final class APIClient {
                 return
             }
             
+         //   let encodedData = data.base64EncodedData()
+            
             print("This is the response: \(response)")
             
             do {
-                let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
+                
+                let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String: Any]]
                 DispatchQueue.main.async {
                     //  DispatchQueue.global(qos: .userInitiated).async {
                     completion(responseJSON)
