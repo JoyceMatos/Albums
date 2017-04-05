@@ -15,8 +15,8 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     let refreshControl = UIRefreshControl()
     
-    fileprivate let itemsPerRow: CGFloat = 3 // Has to specify CGFloat or it will be a double
-    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    fileprivate let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
+    fileprivate let sectionInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0) // 50, 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +95,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
-        let paddingSpace = sectionInsets.left * (itemsPerRow) // can add 1 to itemsPerRow to add more space
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1) // can add 1 to itemsPerRow to add more space
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
