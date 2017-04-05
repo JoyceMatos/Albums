@@ -15,22 +15,22 @@ final class Photo {
     let id: Int
     let title: String
     let urlString: String
-    let thumbnailURL: String
+    let thumbnailURLString: String
     var image: UIImage?
     var isDownloadingImage = false
     
-    init(albumID: Int, id: Int, title: String, urlString: String, thumbnailURL: String) {
+    init(albumID: Int, id: Int, title: String, urlString: String, thumbnailURLString: String) {
         self.albumID = albumID
         self.id = id
         self.title = title
         self.urlString = urlString
-        self.thumbnailURL = thumbnailURL
+        self.thumbnailURLString = thumbnailURLString
     }
     
     func downloadImage(handler: @escaping (Bool) -> Void) {
         isDownloadingImage = true
         let session = URLSession.shared
-        let url = URL(string: urlString)!
+        let url = URL(string: thumbnailURLString)!
         let request = URLRequest(url: url)
         session.dataTask(with: request, completionHandler: { data, response, error in
             DispatchQueue.main.async {

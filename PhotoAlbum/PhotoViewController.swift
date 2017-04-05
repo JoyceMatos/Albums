@@ -13,8 +13,8 @@ class PhotoViewController: UIViewController {
     let store = DataStore.shared
     
     @IBOutlet weak var collectionView: UICollectionView!
+    let refreshControl = UIRefreshControl()
     
-
     fileprivate let itemsPerRow: CGFloat = 3 // Has to specify CGFloat or it will be a double
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
@@ -23,10 +23,11 @@ class PhotoViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-    
+        
         
         retrievePhotos()
-      
+        refresh()
+        
     }
     
     func retrievePhotos() {
@@ -36,6 +37,18 @@ class PhotoViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    func refresh() {
+        
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(reloadCollectionView), for: .valueChanged)
+        
+    }
+    
+    func reloadCollectionView() {
+        self.collectionView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     
@@ -49,12 +62,12 @@ class PhotoViewController: UIViewController {
             let destVC = segue.destination as! DetailViewController
             let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell)
             
-          // TODO: - Fix indexPAth.item
+            // TODO: - Fix indexPAth.item
             destVC.photo = store.photos[(indexPath?.item)!]
         }
     }
-
-
+    
+    
 }
 
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -73,7 +86,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if cell.delegate == nil {
             cell.delegate = self
             cell.backgroundColor = UIColor.clear
-
+            
         }
         
         return cell
@@ -108,11 +121,11 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
 
 
 
-// MARK: - Collection View Cell Delegate 
+// MARK: - Collection View Cell Delegate
 extension PhotoViewController: PhotoCellDelegate {
     
     func photoCell(_ photoCell: CollectionViewCell, canDisplayPhoto photo: Photo) -> Bool {
-            let visibleIndexPaths = collectionView.indexPathsForVisibleItems
+        let visibleIndexPaths = collectionView.indexPathsForVisibleItems
         
         var visiblePhotos: Set<Int> = []
         
