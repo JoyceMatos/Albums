@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class AlbumAPIClient {
+final class APIClient {
     
     static func retrieveJSON(completion: @escaping ([[String: Any]]) -> Void) {
         
@@ -26,19 +26,12 @@ final class AlbumAPIClient {
                 do {
                     let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
                     DispatchQueue.main.async {
-
-                    
-                        print("JSON: \(responseJSON)")
                         completion(responseJSON)
-                        
                     }
 
                 } catch {
                     print(error.localizedDescription)
                 }
-            
-            
-            
             
             }
             task.resume()

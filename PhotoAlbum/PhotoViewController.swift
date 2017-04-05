@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PhotoViewController: UIViewController {
     
-    let store = AlbumDataStore.shared
+    let store = DataStore.shared
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -33,7 +33,13 @@ class ViewController: UIViewController {
         self.store.getPhotos { (photos) in
             DispatchQueue.main.async {
                 print("reloading data")
+                
+                self.store.getAlbums()
+
                 self.collectionView.reloadData()
+                
+                
+
             }
         }
     }
@@ -46,6 +52,13 @@ class ViewController: UIViewController {
             }
         }
         return nil
+    }
+    
+    
+    
+    @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) {
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -61,7 +74,7 @@ class ViewController: UIViewController {
 
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -82,6 +95,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
         
         return cell
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2

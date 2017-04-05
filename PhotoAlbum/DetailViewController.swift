@@ -46,8 +46,28 @@ class DetailViewController: UIViewController {
         }
         return nil
     }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        
+        performSegue(withIdentifier: "photoView", sender: self)
+
+    }
+    
+    
+   
 
     
+//    override func segueForUnwinding(to toViewController: UIViewController, from fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
+////        if let id = identifier {
+////            if id == "photoView" {
+////                let unwindSegue = UnwindDetailViewSegue(identifier: id, source: fromViewController, destination: fromViewController)
+////                return unwindSegue
+////            }
+////        }
+//        
+//        
+//        
+//    }
     
     
     
