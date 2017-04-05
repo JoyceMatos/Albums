@@ -38,7 +38,7 @@ class CollectionViewCell: UICollectionViewCell {
                 if success {
                     guard self.delegate.photoCell(self, canDisplayPhoto: self.photo) else { return }
                     self.image.alpha = 0.0
-                    selfs.label.alpha = 0.0
+                    self.label.alpha = 0.0
                     self.image.image = self.photo.image
                     self.label.text = self.photo.title
                     UIView.animate(withDuration: 1.0, animations: {

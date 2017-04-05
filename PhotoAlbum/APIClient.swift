@@ -17,25 +17,64 @@ final class APIClient {
             return
         }
         let session = URLSession.shared
-
-        let task = session.dataTask(with: url) { (data, response, error) in
-                guard let data = data else {
-                    return
-                }
-
-                do {
-                    let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
-                    DispatchQueue.main.async {
-                  //  DispatchQueue.global(qos: .userInitiated).async {
-                        completion(responseJSON)
-                    }
-
-                } catch {
-                    print(error.localizedDescription)
-                }
-            
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      //  request.httpBody = json
+        
+        
+        let sessionTask = session.dataTask(with: request) { (data, response, error) in
+            guard let data = data else  {
+                return
             }
-            task.resume()
+            
+            print("This is the response: \(response)")
+            
+            do {
+                let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
+                DispatchQueue.main.async {
+                    //  DispatchQueue.global(qos: .userInitiated).async {
+                    completion(responseJSON)
+                }
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+            
+        
+        }
+
+
+      //  let task = session.dataTask(with: url) { (data, response, error) in
+//                guard let data = data else  {
+//                    return
+//                }
+//            
+//            print("This is the data: \(data)")
+//            print("this is the response: \(response)")
+//            
+////            var dataString = String(data: data, encoding: String.Encoding.utf8)!
+////            dataString = dataString.replacingOccurrences(of: "\\", with: "'")
+////            let cleanData: Data = dataString.data(using: String.Encoding.utf8)!
+////            
+//            
+//            print("This is the clean data \(cleanData)")
+//
+//                do {
+//                    let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
+//                    DispatchQueue.main.async {
+//                  //  DispatchQueue.global(qos: .userInitiated).async {
+//                        completion(responseJSON)
+//                    }
+//
+//                } catch {
+//                    print(error.localizedDescription)
+//                }
+//            
+//            
+        
+        
+      //  task.resume()
+            sessionTask.resume()
 
         
     }

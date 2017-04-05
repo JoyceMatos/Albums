@@ -27,8 +27,6 @@ final class Photo {
         self.thumbnailURL = thumbnailURL
     }
     
-    // TODO: Create init function
-    
     func downloadImage(handler: @escaping (Bool) -> Void) {
         isDownloadingImage = true
         let session = URLSession.shared
