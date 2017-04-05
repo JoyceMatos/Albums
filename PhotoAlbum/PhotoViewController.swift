@@ -99,7 +99,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         //2
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let paddingSpace = sectionInsets.left * (itemsPerRow) // can add 1 to itemsPerRow to add more space
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         

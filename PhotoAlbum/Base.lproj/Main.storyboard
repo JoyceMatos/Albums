@@ -72,17 +72,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vcT-NI-dQX">
-                                    <size key="itemSize" width="200" height="200"/>
+                                    <size key="itemSize" width="250" height="250"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="a6P-a1-aqM" customClass="CollectionViewCell" customModule="PhotoAlbum" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                        <rect key="frame" x="87.5" y="0.0" width="200" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpC-7N-MY2">
@@ -93,7 +93,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q47-jz-DyW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="250"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -103,7 +103,7 @@
                                             <constraint firstItem="Q47-jz-DyW" firstAttribute="height" secondItem="a6P-a1-aqM" secondAttribute="height" id="tTX-DV-fGu"/>
                                             <constraint firstItem="Q47-jz-DyW" firstAttribute="width" secondItem="a6P-a1-aqM" secondAttribute="width" id="xHN-la-QBU"/>
                                         </constraints>
-                                        <size key="customSize" width="150" height="150"/>
+                                        <size key="customSize" width="200" height="200"/>
                                         <connections>
                                             <outlet property="image" destination="Q47-jz-DyW" id="NRK-rt-roZ"/>
                                             <outlet property="label" destination="LpC-7N-MY2" id="8Ti-GS-wFe"/>
