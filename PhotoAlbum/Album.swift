@@ -11,7 +11,14 @@ import Foundation
 struct Album {
     
     let albumID: Int
-    let photos: [Photo]
+    var photos: [Photo]
     
+}
+
+extension Album: Equatable {
+    
+    static func == (lhs: Album, rhs: Album) -> Bool {
+        return (lhs.albumID == rhs.albumID)
+    }
     
 }

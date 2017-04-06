@@ -24,6 +24,12 @@ class PhotoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        store.getAlbums {
+            DispatchQueue.main.async {
+                print("These are the albums: \(self.store.albums.description)")
+
+            }
+        }
         
         retrievePhotos()
         refresh()
