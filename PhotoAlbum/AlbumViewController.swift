@@ -13,7 +13,6 @@ class AlbumViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let store = DataStore.shared
-    // var albums = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +29,16 @@ class AlbumViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "seguePhotosforAlbum" {
+            let destVC = segue.destination as! PhotoViewController
+            let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
+            
+            // TODO: - Fix indexPAth.item
+            destVC.albumPhotos = store.albums[(indexPath?.item)!].photos
         }
     }
     

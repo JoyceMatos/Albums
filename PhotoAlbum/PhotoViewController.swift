@@ -17,6 +17,9 @@ class PhotoViewController: UIViewController {
     
     fileprivate let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
     fileprivate let sectionInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0) // 50, 20
+    var albumID: Int?
+    var albumPhotos = [Photo]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +27,22 @@ class PhotoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        print("++++++\(self.albumID)")
+        
+        if albumPhotos == nil {
+        
+        retrievePhotos()
+        } else {
+        
         store.getAlbums {
             DispatchQueue.main.async {
                 print("These are the albums: \(self.store.albums.description)")
+                print("=====\(self.store.albums)")
 
             }
         }
+        }
         
-        retrievePhotos()
         refresh()
         
     }
@@ -83,7 +94,13 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if albumPhotos != nil {
+            return albumPhotos.count
+        } else {
+        
         return store.photos.count
+        }
     }
     
     
@@ -115,8 +132,16 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let currentCell = cell as! CollectionViewCell
+        
+        
+        // NOTE: - Refactor
+        if albumPhotos != nil {
+            let photo = albumPhotos[indexPath.item]
+            currentCell.photo = photo
+        } else {
         let photo = store.photos[indexPath.item]
         currentCell.photo = photo
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -135,9 +160,18 @@ extension PhotoViewController: PhotoCellDelegate {
         
         var visiblePhotos: Set<Int> = []
         
+        // NOTE: - Refactor!
+        if albumPhotos != nil {
+            for indexPath in visibleIndexPaths {
+                let photoAtIndexPath = albumPhotos[indexPath.item]
+                visiblePhotos.insert(photoAtIndexPath.id)
+            }
+            
+        } else {
         for indexPath in visibleIndexPaths {
             let photoAtIndexPath = store.photos[indexPath.item]
             visiblePhotos.insert(photoAtIndexPath.id)
+        }
         }
         
         return visiblePhotos.contains(photo.id)
