@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="S7Q-rY-TQH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Tn4-UM-KV6">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,72 +9,70 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
-        <scene sceneID="3RG-Dh-Uq8">
+        <!--Master View Controller-->
+        <scene sceneID="xvG-GB-qOi">
             <objects>
-                <viewController id="0U4-CP-PWM" sceneMemberID="viewController">
+                <viewController id="Tn4-UM-KV6" customClass="MasterViewController" customModule="PhotoAlbum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="R6z-rt-drD"/>
-                        <viewControllerLayoutGuide type="bottom" id="1Xq-rb-a4F"/>
+                        <viewControllerLayoutGuide type="top" id="yMV-S7-PU3"/>
+                        <viewControllerLayoutGuide type="bottom" id="OkB-vc-vcw"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3S5-Kn-Ewf">
+                    <view key="view" contentMode="scaleToFill" id="tW9-DX-geU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZuY-Mc-S3D">
+                                <rect key="frame" x="0.0" y="89" width="375" height="578"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="S7Q-rY-TQH" kind="embed" id="2w6-6s-HxM"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiE-P8-Huw">
+                                <rect key="frame" x="54" y="28" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Albums"/>
+                                <connections>
+                                    <action selector="albumTapped:" destination="Tn4-UM-KV6" eventType="touchUpInside" id="8TZ-Tz-LtS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0w-34-xKz">
+                                <rect key="frame" x="236" y="28" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="All Photos"/>
+                                <connections>
+                                    <action selector="photoTapped:" destination="Tn4-UM-KV6" eventType="touchUpInside" id="cok-T1-39d"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SKl-9f-57C">
+                                <rect key="frame" x="0.0" y="89" width="375" height="578"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="embed" id="Suq-lS-kMi"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="kVY-l3-lFC"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nhV-ZS-GCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1962" y="428"/>
-        </scene>
-        <!--Item 1-->
-        <scene sceneID="rCV-1w-PE2">
-            <objects>
-                <viewController id="roK-hi-IMq" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DrM-rd-c9k"/>
-                        <viewControllerLayoutGuide type="bottom" id="5kq-b6-KZ3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zYa-Yt-olx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="Sr1-Tx-hnm"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cFb-Xg-iM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1962" y="-226"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="ZzB-dh-dQW">
-            <objects>
-                <tabBarController id="EDM-MU-Q7B" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="0Nj-Ow-h0v">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
                     <connections>
-                        <segue destination="roK-hi-IMq" kind="relationship" relationship="viewControllers" id="S3h-Th-HzF"/>
-                        <segue destination="0U4-CP-PWM" kind="relationship" relationship="viewControllers" id="43K-6S-uRI"/>
+                        <outlet property="containerView" destination="ZuY-Mc-S3D" id="iaP-Yw-ONK"/>
+                        <outlet property="photoContainerView" destination="SKl-9f-57C" id="C8u-Wj-MVf"/>
                     </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="p4O-73-IPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PXX-6S-mZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2918" y="101"/>
+            <point key="canvasLocation" x="-1623.2" y="22.938530734632685"/>
         </scene>
         <!--Album View Controller-->
         <scene sceneID="5CR-oK-OPh">
             <objects>
-                <viewController id="S7Q-rY-TQH" customClass="AlbumViewController" customModule="PhotoAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="album-view-controller" id="S7Q-rY-TQH" customClass="AlbumViewController" customModule="PhotoAlbum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Fkj-1j-tqT"/>
                         <viewControllerLayoutGuide type="bottom" id="Suc-pp-NCH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="S2e-6q-nFL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6nW-WE-3u8">
@@ -109,21 +107,11 @@
                                         <connections>
                                             <outlet property="albumLabel" destination="rFA-aD-qU4" id="WBe-Zx-ceJ"/>
                                             <outlet property="albumView" destination="HfJ-Rr-RSF" id="ZHW-pM-tv7"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" identifier="seguePhotosforAlbum" id="5W6-zH-ZZQ"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="seguePhotosforAlbum" customClass="CollectionViewSegue" customModule="PhotoAlbum" customModuleProvider="target" id="5W6-zH-ZZQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiE-P8-Huw">
-                                <rect key="frame" x="87" y="36" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Albums"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0w-34-xKz">
-                                <rect key="frame" x="237" y="36" width="69" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="All Photos"/>
-                            </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJ3-tz-nx3">
                                 <rect key="frame" x="234" y="74" width="75" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -137,24 +125,26 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="578"/>
                     <connections>
                         <outlet property="tableView" destination="6nW-WE-3u8" id="3Dh-xj-svG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CbL-ad-wZW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-674.39999999999998" y="148.87556221889056"/>
+            <point key="canvasLocation" x="-762" y="-324"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PhotoViewController" customModule="PhotoAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="photo-view-controller" id="BYZ-38-t0r" customClass="PhotoViewController" customModule="PhotoAlbum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eG1-mn-9e0">
@@ -189,28 +179,23 @@
                                         <size key="customSize" width="200" height="200"/>
                                         <connections>
                                             <outlet property="image" destination="Q47-jz-DyW" id="NRK-rt-roZ"/>
-                                            <segue destination="Aed-5L-LhN" kind="push" identifier="showDetail" customClass="CollectionViewSegue" customModule="PhotoAlbum" customModuleProvider="target" id="sVA-3i-d0l"/>
+                                            <segue destination="Aed-5L-LhN" kind="show" identifier="showDetail" customClass="CollectionViewSegue" customModule="PhotoAlbum" customModuleProvider="target" id="sVA-3i-d0l"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Fs-zk-OVI">
-                                <rect key="frame" x="140" y="28" width="125" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="578"/>
                     <connections>
                         <outlet property="collectionView" destination="eG1-mn-9e0" id="QtD-jj-o0W"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="149"/>
+            <point key="canvasLocation" x="-695" y="399"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="f8Y-DW-Acq">
@@ -221,7 +206,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Pkb-pS-JNH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uRm-1G-Jkq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-j9-vWJ">
@@ -262,7 +247,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wnv-hq-zBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="wvA-hI-YlQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="956" y="122.78860569715144"/>
+            <point key="canvasLocation" x="165" y="72"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="5W6-zH-ZZQ"/>
+    </inferredMetricsTieBreakers>
 </document>
