@@ -11,6 +11,6 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var albumLabel: UILabel!
- 
+    @IBOutlet weak var albumView: UIView!
 
 }
