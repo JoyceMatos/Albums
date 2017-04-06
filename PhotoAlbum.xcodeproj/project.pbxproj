@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2504D32A1E95DF5800370439 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2504D3291E95DF5800370439 /* TableViewCell.swift */; };
 		250DD1441E933F470017CE51 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DD1431E933F470017CE51 /* DataStore.swift */; };
 		250DD1781E94213F0017CE51 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DD1771E94213F0017CE51 /* CollectionViewCell.swift */; };
 		250DD17A1E9427540017CE51 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250DD1791E9427540017CE51 /* DetailViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2504D3291E95DF5800370439 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		250DD1431E933F470017CE51 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		250DD1771E94213F0017CE51 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		250DD1791E9427540017CE51 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				250DD1771E94213F0017CE51 /* CollectionViewCell.swift */,
 				258CFFA11E947C8500005629 /* CollectionViewSegue.swift */,
 				258CFFA31E94858400005629 /* UnwindDetailViewSegue.swift */,
+				2504D3291E95DF5800370439 /* TableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				250DD1441E933F470017CE51 /* DataStore.swift in Sources */,
 				250DD17A1E9427540017CE51 /* DetailViewController.swift in Sources */,
 				258CFFA21E947C8500005629 /* CollectionViewSegue.swift in Sources */,
+				2504D32A1E95DF5800370439 /* TableViewCell.swift in Sources */,
 				250DD17C1E9444F70017CE51 /* Album.swift in Sources */,
 				258CFFA41E94858400005629 /* UnwindDetailViewSegue.swift in Sources */,
 			);
