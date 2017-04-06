@@ -27,20 +27,11 @@ class PhotoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        print("++++++\(self.albumID)")
-        
-        if albumPhotos == nil {
-        
-        retrievePhotos()
+        if albumPhotos.isEmpty {
+            retrievePhotos()
         } else {
-        
-        store.getAlbums {
-            DispatchQueue.main.async {
-                print("These are the albums: \(self.store.albums.description)")
-                print("=====\(self.store.albums)")
-
+            store.getAlbums {
             }
-        }
         }
         
         refresh()
@@ -50,7 +41,6 @@ class PhotoViewController: UIViewController {
     func retrievePhotos() {
         self.store.getPhotos { (photos) in
             DispatchQueue.main.async {
-                print("reloading data")
                 self.collectionView.reloadData()
             }
         }
@@ -95,11 +85,10 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if albumPhotos != nil {
-            return albumPhotos.count
+        if albumPhotos.isEmpty {
+            return store.photos.count
         } else {
-        
-        return store.photos.count
+            return albumPhotos.count
         }
     }
     
@@ -117,7 +106,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //2
+
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1) // can add 1 to itemsPerRow to add more space
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
@@ -135,12 +124,12 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         
         // NOTE: - Refactor
-        if albumPhotos != nil {
-            let photo = albumPhotos[indexPath.item]
+        if albumPhotos.isEmpty  {
+            let photo = store.photos[indexPath.item]
             currentCell.photo = photo
         } else {
-        let photo = store.photos[indexPath.item]
-        currentCell.photo = photo
+            let photo = albumPhotos[indexPath.item]
+            currentCell.photo = photo
         }
     }
     
@@ -161,17 +150,17 @@ extension PhotoViewController: PhotoCellDelegate {
         var visiblePhotos: Set<Int> = []
         
         // NOTE: - Refactor!
-        if albumPhotos != nil {
+        if albumPhotos.isEmpty {
             for indexPath in visibleIndexPaths {
-                let photoAtIndexPath = albumPhotos[indexPath.item]
+                let photoAtIndexPath = store.photos[indexPath.item]
                 visiblePhotos.insert(photoAtIndexPath.id)
             }
             
         } else {
-        for indexPath in visibleIndexPaths {
-            let photoAtIndexPath = store.photos[indexPath.item]
-            visiblePhotos.insert(photoAtIndexPath.id)
-        }
+            for indexPath in visibleIndexPaths {
+                let photoAtIndexPath = albumPhotos[indexPath.item]
+                visiblePhotos.insert(photoAtIndexPath.id)
+            }
         }
         
         return visiblePhotos.contains(photo.id)
