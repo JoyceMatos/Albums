@@ -41,7 +41,8 @@ class DataStore {
     func getAlbums(completion: @escaping () -> Void)  {
         albums.removeAll()
         
-        // NOTE: - Refine w. higher order functions
+        // NOTE: - Refine w. higher order functions ; make dictionay local variable?
+        // TODO: - Create array of albums from dictionary
         getPhotos { (photosArray) in
             
             for photo in self.photos {
@@ -56,7 +57,19 @@ class DataStore {
                 } else {
                     self.albumDict[key] = value
                 }
+                
             }
+            
+            for object in self.albumDict {
+                
+                let album = Album(albumID: object.key, photos: object.value)
+                self.albums.append(album)
+                
+            }
+            
+            self.albums.sort(by: { $0.albumID < $1.albumID })
+            print("Objects in albums: \(self.albums)")
+            
             completion()
             
             

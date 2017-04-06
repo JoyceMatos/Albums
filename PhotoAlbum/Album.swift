@@ -12,7 +12,6 @@ struct Album {
     
     let albumID: Int
     var photos: [Photo]
-    
 }
 
 extension Album: Equatable {
