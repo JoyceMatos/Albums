@@ -9,7 +9,7 @@
 import XCTest
 @testable import PhotoAlbum
 
-class PhotoAlbumTests: XCTestCase {
+class PhotoTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,7 +21,7 @@ class PhotoAlbumTests: XCTestCase {
     
     func testPhotoInit() {
         
-        let photo = Photo(albumID: 3, id: 3, title: "Michael", url: "www.blah.com", thumbnailURL: "nope")
+        let photo = Photo(albumID: 3, id: 3, title: "Michael", urlString: "www.blah.com", thumbnailURLString: "nope")
         XCTAssertEqual(photo.albumID, 3, "Album ID Should equal 3 through its init function.")
         
     }
