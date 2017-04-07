@@ -25,5 +25,7 @@ class PhotoTests: XCTestCase {
         XCTAssertEqual(photo.albumID, 3, "Album ID Should equal 3 through its init function.")
         
     }
+    
+  
    
 }

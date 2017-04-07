@@ -22,7 +22,7 @@ class AlbumTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAlbum() {
+    func testAlbumInit() {
 
         let photos = [
         Photo(albumID: 57, id: 5, title: "photo1", urlString: "www.blah.com", thumbnailURLString: "www.blah.com"),
