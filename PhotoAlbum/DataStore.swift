@@ -40,11 +40,26 @@ class DataStore {
     
     func getAlbums(completion: @escaping () -> Void)  {
         albums.removeAll()
+        print("Removing all")
         
-        // NOTE: - Refine w. higher order functions
-        getPhotos { (photosArray) in
+        var albumPhotos = [Photo]()
+        
+        APIClient.retrieveJSON { (album) in
+            print("----- Right before my loop ----")
+            for photo in album {
+                
+                let albumID = photo["albumId"] as! Int
+                let id = photo["id"] as! Int
+                let title = photo["title"] as! String
+                let url = photo["url"] as! String
+                let thumbnailURL = photo["thumbnailUrl"] as! String
+                
+                let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURLString: thumbnailURL)
+                print("This is the photo: \(photo)")
+                albumPhotos.append(photo)
+            }
             
-            for photo in self.photos {
+            for photo in albumPhotos {
                 
                 // print("Hey this is the photo:\(photo)")
                 
@@ -56,53 +71,29 @@ class DataStore {
                 } else {
                     self.albumDict[key] = value
                 }
+                
             }
+            
+            for object in self.albumDict {
+                
+                let album = Album(albumID: object.key, photos: object.value)
+                self.albums.append(album)
+                
+            }
+            
+            self.albums.sort(by: { $0.albumID < $1.albumID })
+            print("Objects in albums: \(self.albums)")
+            
+            
+            
+            
             completion()
-            
-            
         }
         
         
-        
-//        APIClient.retrieveJSON { (JSON) in
-//            
-//            
-//            for object in JSON {
-//                
-//                let albumID = object["albumId"] as! Int
-//                let id = object["id"] as! Int
-//                let title = object["title"] as! String
-//                let url = object["url"] as! String
-//                let thumbnailURL = object["thumbnailUrl"] as! String
-//                
-//                let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURLString: thumbnailURL)
-//                
-//                var album = Album(albumID: albumID, photos: [photo])
-        
-                // If albums array contains an album with this id, then append photo
-                
-//                if self.albums.contains(where: {$0.albumID == photo.albumID}) {
-//                        $0.photos.append(photo)
-//                } else {
-//                    //item does NOT exist
-//                }
-                
-//                let specificAlbum = self.albums.filter({ $0.albumID == photo.albumID }).first
-//                
-
-//                guard let index = self.albums.index(where: {$0.albumID == photo.albumID}) else  {
-//                    return
-//                }
-//
-//                var mainAlbum = self.albums[index]
-//                mainAlbum.photos.append(photo)
-                
-
-
-        
-        
-    }
-
+        }
+    
+    
     
     
 }

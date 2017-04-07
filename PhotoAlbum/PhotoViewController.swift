@@ -17,6 +17,9 @@ class PhotoViewController: UIViewController {
     
     fileprivate let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
     fileprivate let sectionInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0) // 50, 20
+    var albumID: Int?
+    var albumPhotos = [Photo]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +27,13 @@ class PhotoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        store.getAlbums {
-            DispatchQueue.main.async {
-                print("These are the albums: \(self.store.albums.description)")
-
+        if albumPhotos.isEmpty {
+            retrievePhotos()
+        } else {
+            store.getAlbums {
             }
         }
         
-        retrievePhotos()
         refresh()
         
     }
@@ -39,7 +41,6 @@ class PhotoViewController: UIViewController {
     func retrievePhotos() {
         self.store.getPhotos { (photos) in
             DispatchQueue.main.async {
-                print("reloading data")
                 self.collectionView.reloadData()
             }
         }
@@ -83,7 +84,12 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return store.photos.count
+        
+        if albumPhotos.isEmpty {
+            return store.photos.count
+        } else {
+            return albumPhotos.count
+        }
     }
     
     
@@ -100,7 +106,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //2
+
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1) // can add 1 to itemsPerRow to add more space
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
@@ -115,8 +121,16 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let currentCell = cell as! CollectionViewCell
-        let photo = store.photos[indexPath.item]
-        currentCell.photo = photo
+        
+        
+        // NOTE: - Refactor
+        if albumPhotos.isEmpty  {
+            let photo = store.photos[indexPath.item]
+            currentCell.photo = photo
+        } else {
+            let photo = albumPhotos[indexPath.item]
+            currentCell.photo = photo
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -135,9 +149,18 @@ extension PhotoViewController: PhotoCellDelegate {
         
         var visiblePhotos: Set<Int> = []
         
-        for indexPath in visibleIndexPaths {
-            let photoAtIndexPath = store.photos[indexPath.item]
-            visiblePhotos.insert(photoAtIndexPath.id)
+        // NOTE: - Refactor!
+        if albumPhotos.isEmpty {
+            for indexPath in visibleIndexPaths {
+                let photoAtIndexPath = store.photos[indexPath.item]
+                visiblePhotos.insert(photoAtIndexPath.id)
+            }
+            
+        } else {
+            for indexPath in visibleIndexPaths {
+                let photoAtIndexPath = albumPhotos[indexPath.item]
+                visiblePhotos.insert(photoAtIndexPath.id)
+            }
         }
         
         return visiblePhotos.contains(photo.id)
