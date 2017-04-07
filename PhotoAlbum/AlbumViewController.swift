@@ -42,6 +42,11 @@ class AlbumViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) {
+        
+        
+    }
+    
     
 }
 
