@@ -40,6 +40,8 @@ class DataStore {
     
     func getAlbums(completion: @escaping () -> Void)  {
         albums.removeAll()
+        albumDict.removeAll()
+    
         print("Removing all")
         
         var albumPhotos = [Photo]()
