@@ -44,6 +44,10 @@ class PhotoViewController: UIViewController {
         
         if albumPhotos.isEmpty {
             backButton.isHidden = true
+            
+            // TODO: - Adjust collectionview constraint
+            
+            
         } else {
             backButton.isHidden = false
         }
