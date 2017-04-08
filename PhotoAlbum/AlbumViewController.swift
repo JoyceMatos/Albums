@@ -64,11 +64,41 @@ extension AlbumViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "albumCell", for: indexPath) as! TableViewCell
         let album = store.albums[indexPath.row]
-        
+        cell.delegate = self
         cell.albumLabel.text = "Album \(album.albumID)"
+        cell.photosLabel.text = "\(album.photos.count) Photos"
+    //    cell.photoImageView.image =
         cell.contentView.backgroundColor = UIColor.clear
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let currentCell = cell as! TableViewCell
+
+        let photo = store.albums[indexPath.item].photos[0]
+        currentCell.photo = photo
+    }
+    
+}
+
+// MARK: - Collection View Cell Delegate
+extension AlbumViewController: AlbumCellDelegate {
+    
+    func albumCell(_ albumCell: TableViewCell, canDisplayPhoto photo: Photo) -> Bool {
+        var visiblePhotos: Set<Int> = []
+
+        if let visibleIndexPaths = tableView.indexPathsForVisibleRows {
+        
+        
+            for indexPath in visibleIndexPaths {
+                let photoAtIndexPath = store.albums[indexPath.item].photos[0]
+                visiblePhotos.insert(photoAtIndexPath.id)
+
+        }
+        
+        }
+        return visiblePhotos.contains(photo.id)
+
+}
 }
