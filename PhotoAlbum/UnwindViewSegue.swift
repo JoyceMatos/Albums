@@ -8,7 +8,7 @@
 
 import UIKit
 
-    class UnwindDetailViewSegue: UIStoryboardSegue {
+    class UnwindViewSegue: UIStoryboardSegue {
         
         override func perform() {
             let src = self.source as UIViewController

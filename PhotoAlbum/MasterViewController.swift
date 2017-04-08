@@ -11,12 +11,27 @@ import UIKit
 class MasterViewController: UIViewController {
 
     
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var albumContainerView: UIView!
     var actingVC: UIViewController!
     @IBOutlet weak var photoContainerView: UIView!
+    @IBOutlet weak var albumView: UIView!
+    @IBOutlet weak var photoView: UIView!
     
     var albumTapped = true
     var photoTapped = false
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configureViews()
+    }
+    
+    func configureViews() {
+        self.albumContainerView.alpha = 1.0
+        self.photoContainerView.alpha = 0.0
+        self.albumView.isHidden = false
+        self.photoView.isHidden = true
+    }
     
     @IBAction func albumTapped(_ sender: Any) {
         
@@ -24,8 +39,11 @@ class MasterViewController: UIViewController {
         photoTapped = false
         
         UIView.animate(withDuration: 0.5) { 
-            self.containerView.alpha = 1.0
+            self.albumContainerView.alpha = 1.0
             self.photoContainerView.alpha = 0.0
+            
+            self.albumView.isHidden = false
+            self.photoView.isHidden = true
         }
         
        
@@ -37,8 +55,11 @@ class MasterViewController: UIViewController {
         photoTapped = true
         
         UIView.animate(withDuration: 0.5) {
-            self.containerView.alpha = 0.0
+            self.albumContainerView.alpha = 0.0
             self.photoContainerView.alpha = 1.0
+            
+            self.albumView.isHidden = true
+            self.photoView.isHidden = false
         }
     }
     
@@ -47,13 +68,10 @@ class MasterViewController: UIViewController {
 
 
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    
+    @IBAction func unwindToMaster(segue:UIStoryboardSegue) { }
 
-        self.containerView.alpha = 1.0
-        self.photoContainerView.alpha = 0.0
     
-    
-    }
 }
 

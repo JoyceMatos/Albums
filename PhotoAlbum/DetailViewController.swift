@@ -53,6 +53,9 @@ class DetailViewController: UIViewController {
     // NOTE: - Not in use?
     @IBAction func cancelButtonTapped(_ sender: Any) {
 
+        self.dismiss(animated: true, completion: nil);
+
+        
     }
     
     

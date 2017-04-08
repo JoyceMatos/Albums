@@ -13,6 +13,7 @@ class PhotoViewController: UIViewController {
     let store = DataStore.shared
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var backButton: UIButton!
     let refreshControl = UIRefreshControl()
     
     fileprivate let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
@@ -34,8 +35,18 @@ class PhotoViewController: UIViewController {
             }
         }
         
+        configureViews()
         refresh()
         
+    }
+    
+    func configureViews() {
+        
+        if albumPhotos.isEmpty {
+            backButton.isHidden = true
+        } else {
+            backButton.isHidden = false
+        }
     }
     
     func retrievePhotos() {

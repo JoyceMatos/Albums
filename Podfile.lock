@@ -1,0 +1,12 @@
+PODS:
+  - Hero (0.3.6)
+
+DEPENDENCIES:
+  - Hero
+
+SPEC CHECKSUMS:
+  Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
+
+PODFILE CHECKSUM: e7cbaa2ee86a386b0efbf6e974a04218080f3da6
+
+COCOAPODS: 1.2.0

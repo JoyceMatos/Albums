@@ -12,6 +12,7 @@
         <!--Master View Controller-->
         <scene sceneID="xvG-GB-qOi">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PXX-6S-mZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Tn4-UM-KV6" customClass="MasterViewController" customModule="PhotoAlbum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yMV-S7-PU3"/>
@@ -21,25 +22,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZuY-Mc-S3D">
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZuY-Mc-S3D" userLabel="Album Container View">
                                 <rect key="frame" x="0.0" y="89" width="375" height="578"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="vga-hv-SFB" kind="embed" id="2w6-6s-HxM"/>
+                                    <segue destination="S7Q-rY-TQH" kind="embed" id="t3P-IY-BTm"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiE-P8-Huw">
-                                <rect key="frame" x="54" y="28" width="52" height="30"/>
+                                <rect key="frame" x="54" y="28" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Albums"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Albums">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="albumTapped:" destination="Tn4-UM-KV6" eventType="touchUpInside" id="8TZ-Tz-LtS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0w-34-xKz">
-                                <rect key="frame" x="236" y="28" width="69" height="30"/>
+                                <rect key="frame" x="236" y="28" width="88" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="All Photos"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="All Photos">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="photoTapped:" destination="Tn4-UM-KV6" eventType="touchUpInside" id="cok-T1-39d"/>
                                 </connections>
@@ -51,15 +58,26 @@
                                     <segue destination="BYZ-38-t0r" kind="embed" id="Suq-lS-kMi"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTL-me-f0V">
+                                <rect key="frame" x="236" y="66" width="88" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJ3-tz-nx3">
+                                <rect key="frame" x="54" y="66" width="64" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="containerView" destination="ZuY-Mc-S3D" id="iaP-Yw-ONK"/>
+                        <outlet property="albumContainerView" destination="ZuY-Mc-S3D" id="lww-G5-zHw"/>
+                        <outlet property="albumView" destination="aJ3-tz-nx3" id="2Zh-rP-YG1"/>
                         <outlet property="photoContainerView" destination="SKl-9f-57C" id="C8u-Wj-MVf"/>
+                        <outlet property="photoView" destination="GTL-me-f0V" id="GOg-c7-gds"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PXX-6S-mZu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1623.2" y="22.938530734632685"/>
         </scene>
@@ -76,7 +94,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6nW-WE-3u8">
-                                <rect key="frame" x="0.0" y="84" width="375" height="584"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="668"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -112,16 +130,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aJ3-tz-nx3">
-                                <rect key="frame" x="234" y="74" width="75" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GTL-me-f0V">
-                                <rect key="frame" x="80" y="74" width="66" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -178,9 +186,12 @@
                                             <constraint firstItem="Q47-jz-DyW" firstAttribute="width" secondItem="a6P-a1-aqM" secondAttribute="width" id="xHN-la-QBU"/>
                                         </constraints>
                                         <size key="customSize" width="200" height="200"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="expandPhoto"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="image" destination="Q47-jz-DyW" id="NRK-rt-roZ"/>
-                                            <segue destination="Aed-5L-LhN" kind="show" identifier="showDetail" customClass="CollectionViewSegue" customModule="PhotoAlbum" customModuleProvider="target" id="sVA-3i-d0l"/>
+                                            <segue destination="Aed-5L-LhN" kind="presentation" identifier="showDetail" id="sVA-3i-d0l"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -190,7 +201,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
                                 <connections>
-                                    <segue destination="6ib-l3-VL3" kind="unwind" unwindAction="unwindSegueToSelfWithSegue:" id="3fP-VQ-Rz3"/>
+                                    <segue destination="6ib-l3-VL3" kind="unwind" customClass="UnwindViewSegue" customModule="PhotoAlbum" customModuleProvider="target" unwindAction="unwindToMasterWithSegue:" id="gbS-dY-vqa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -199,6 +210,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="578"/>
                     <connections>
+                        <outlet property="backButton" destination="p1a-vD-L1o" id="Xzb-7D-O6J"/>
                         <outlet property="collectionView" destination="eG1-mn-9e0" id="QtD-jj-o0W"/>
                     </connections>
                 </viewController>
@@ -216,7 +228,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Pkb-pS-JNH"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uRm-1G-Jkq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="578"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WP8-j9-vWJ">
@@ -242,40 +254,23 @@
                                 <state key="normal" title="X"/>
                                 <connections>
                                     <action selector="cancelButtonTapped:" destination="Aed-5L-LhN" eventType="touchUpInside" id="QMu-84-4nX"/>
-                                    <segue destination="wvA-hI-YlQ" kind="unwind" identifier="photoView" customClass="UnwindDetailViewSegue" customModule="PhotoAlbum" customModuleProvider="target" unwindAction="unwindSegueToSelfWithSegue:" id="gHw-Ol-qIL"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="dzj-7d-eS1"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="descriptionLabel" destination="RHx-4Z-lnq" id="F80-54-TQz"/>
                         <outlet property="imageView" destination="WP8-j9-vWJ" id="WgB-b3-oIi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wnv-hq-zBb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="wvA-hI-YlQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="314" y="399"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="w0H-tB-PIG">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vga-hv-SFB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zbh-nD-zEB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="S7Q-rY-TQH" kind="relationship" relationship="rootViewController" id="53G-T0-pOM"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jng-0f-dtf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-762.39999999999998" y="-324.7376311844078"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
