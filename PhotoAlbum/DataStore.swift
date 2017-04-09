@@ -20,33 +20,6 @@ class DataStore {
         print("Removing all")
         
         APIClient.retrieveJSON { (album) in
-                print("----- Right before my loop ----")
-                for photo in album {
-                    
-                    let albumID = photo["albumId"] as! Int
-                    let id = photo["id"] as! Int
-                    let title = photo["title"] as! String
-                    let url = photo["url"] as! String
-                    let thumbnailURL = photo["thumbnailUrl"] as! String
-                    
-                    let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURLString: thumbnailURL)
-                    print("This is the photo: \(photo)")
-                    self.photos.append(photo)
-                }
-            
-            completion(self.photos)
-        }
-    }
-    
-    func getAlbums(completion: @escaping () -> Void)  {
-        albums.removeAll()
-        albumDict.removeAll()
-    
-        print("Removing all")
-        
-        var albumPhotos = [Photo]()
-        
-        APIClient.retrieveJSON { (album) in
             print("----- Right before my loop ----")
             for photo in album {
                 
@@ -58,13 +31,30 @@ class DataStore {
                 
                 let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURLString: thumbnailURL)
                 print("This is the photo: \(photo)")
+                self.photos.append(photo)
+            }
+            
+            completion(self.photos)
+        }
+    }
+    
+    func getAlbums(completion: @escaping () -> Void)  {
+        albums.removeAll()
+        albumDict.removeAll()
+        
+        var albumPhotos = [Photo]()
+        APIClient.retrieveJSON { (album) in
+            for photo in album {
+                let albumID = photo["albumId"] as! Int
+                let id = photo["id"] as! Int
+                let title = photo["title"] as! String
+                let url = photo["url"] as! String
+                let thumbnailURL = photo["thumbnailUrl"] as! String
+                let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURLString: thumbnailURL)
                 albumPhotos.append(photo)
             }
             
             for photo in albumPhotos {
-                
-                // print("Hey this is the photo:\(photo)")
-                
                 let key = photo.albumID
                 let value = [photo]
                 
@@ -73,27 +63,19 @@ class DataStore {
                 } else {
                     self.albumDict[key] = value
                 }
-                
             }
             
             for object in self.albumDict {
-                
                 let album = Album(albumID: object.key, photos: object.value)
                 self.albums.append(album)
-                
             }
             
             self.albums.sort(by: { $0.albumID < $1.albumID })
-            print("Objects in albums: \(self.albums)")
-            
-            
-            
-            
             completion()
         }
         
         
-        }
+    }
     
     
     

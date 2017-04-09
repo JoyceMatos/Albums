@@ -15,9 +15,8 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backButton: UIButton!
     let refreshControl = UIRefreshControl()
-    
-    fileprivate let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
-    fileprivate let sectionInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0) // 50, 20
+    let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
+    let sectionInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0) // 50, 20
     var albumID: Int?
     var albumPhotos = [Photo]()
     
@@ -28,13 +27,7 @@ class PhotoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        if albumPhotos.isEmpty {
-            retrievePhotos()
-        } else {
-            store.getAlbums {
-            }
-        }
-        
+       determinePhotoSource()
         configureViews()
         refresh()
         
@@ -46,8 +39,6 @@ class PhotoViewController: UIViewController {
             backButton.isHidden = true
             
             // TODO: - Adjust collectionview constraint
-            
-            
         } else {
             backButton.isHidden = false
         }
@@ -61,11 +52,18 @@ class PhotoViewController: UIViewController {
         }
     }
     
+    func determinePhotoSource() {
+        if albumPhotos.isEmpty {
+            retrievePhotos()
+        } else {
+            store.getAlbums {
+            }
+        }
+    }
+    
     func refresh() {
-        
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(reloadCollectionView), for: .valueChanged)
-        
     }
     
     func reloadCollectionView() {
@@ -74,10 +72,7 @@ class PhotoViewController: UIViewController {
     }
     
     
-    @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) {
-        
-        
-    }
+    @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
@@ -85,7 +80,7 @@ class PhotoViewController: UIViewController {
             let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell)
             
             // TODO: - Fix indexPAth.item
-            destVC.photo = store.photos[(indexPath?.item)!]
+                destVC.photo = displayPhoto(albumPhotos, allPhotos: store.photos)[(indexPath?.item)!]
         }
     }
     
@@ -100,11 +95,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if albumPhotos.isEmpty {
-            return store.photos.count
-        } else {
-            return albumPhotos.count
-        }
+        return displayCount(albumPhotos, allPhotos: store.photos)
     }
     
     
@@ -121,8 +112,8 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1) // can add 1 to itemsPerRow to add more space
+        
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
@@ -135,23 +126,18 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
         let currentCell = cell as! CollectionViewCell
-        
-        
-        // NOTE: - Refactor
-        if albumPhotos.isEmpty  {
-            let photo = store.photos[indexPath.item]
-            currentCell.photo = photo
-        } else {
-            let photo = albumPhotos[indexPath.item]
-            currentCell.photo = photo
-        }
+        let photo = displayPhoto(albumPhotos, allPhotos: store.photos)[indexPath.item]
+        currentCell.photo = photo
+
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
         return sectionInsets.left
     }
+    
 }
 
 
@@ -163,24 +149,36 @@ extension PhotoViewController: PhotoCellDelegate {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems
         
         var visiblePhotos: Set<Int> = []
-        
-        // NOTE: - Refactor!
-        if albumPhotos.isEmpty {
+    
             for indexPath in visibleIndexPaths {
-                let photoAtIndexPath = store.photos[indexPath.item]
+                let photoAtIndexPath = displayPhoto(albumPhotos, allPhotos: store.photos)[indexPath.item]
                 visiblePhotos.insert(photoAtIndexPath.id)
             }
-            
-        } else {
-            for indexPath in visibleIndexPaths {
-                let photoAtIndexPath = albumPhotos[indexPath.item]
-                visiblePhotos.insert(photoAtIndexPath.id)
-            }
-        }
         
         return visiblePhotos.contains(photo.id)
     }
     
+}
+
+// MARK: - Display Photos Methods
+extension PhotoViewController: DisplayPhotos {
+    
+    func displayCount(_ albumPhotos: [Photo], allPhotos: [Photo]) -> Int {
+        if albumPhotos.isEmpty {
+            return store.photos.count
+        } else {
+            return albumPhotos.count
+        }
+    }
+    
+    func displayPhoto(_ albumPhotos: [Photo], allPhotos: [Photo]) -> [Photo] {
+        if albumPhotos.isEmpty  {
+            return store.photos
+        } else {
+            return albumPhotos
+        }
+    }
+
 }
 
 
