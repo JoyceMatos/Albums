@@ -10,9 +10,16 @@ import Foundation
 
 //NOTE: - Update all files with these constants
 
-struct Segue {
+struct SegueIdentifiers {
     
-    let showDetail = "showDetail"
+    static let showDetail = "showDetail"
+    static let showPhotos = "showPhotos"
     
     
+}
+
+struct CellIdentifiers {
+    
+    static let photoCell = "photoCell"
+    static let albumCell = "albumCell"
 }

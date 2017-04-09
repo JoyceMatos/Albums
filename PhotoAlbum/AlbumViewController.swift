@@ -33,7 +33,7 @@ class AlbumViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "seguePhotosforAlbum" {
+        if segue.identifier == SegueIdentifiers.showPhotos {
             let destVC = segue.destination as! PhotoViewController
             let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
             
@@ -62,12 +62,13 @@ extension AlbumViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "albumCell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifiers.albumCell, for: indexPath) as! TableViewCell
         let album = store.albums[indexPath.row]
         cell.delegate = self
+        
+        // NOTE: - Replace string Literals
         cell.albumLabel.text = "Album \(album.albumID)"
         cell.photosLabel.text = "\(album.photos.count) Photos"
-    //    cell.photoImageView.image =
         cell.contentView.backgroundColor = UIColor.clear
         
         return cell

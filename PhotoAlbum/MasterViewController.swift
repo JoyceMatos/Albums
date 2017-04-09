@@ -9,14 +9,12 @@
 import UIKit
 
 class MasterViewController: UIViewController {
-
     
     @IBOutlet weak var albumContainerView: UIView!
-    var actingVC: UIViewController!
     @IBOutlet weak var photoContainerView: UIView!
     @IBOutlet weak var albumView: UIView!
     @IBOutlet weak var photoView: UIView!
-    
+    var actingVC: UIViewController!
     var albumTapped = true
     var photoTapped = false
     
@@ -34,41 +32,31 @@ class MasterViewController: UIViewController {
     }
     
     @IBAction func albumTapped(_ sender: Any) {
-        
         albumTapped = true
         photoTapped = false
         
+        // NOTE: - Break animations down into functions
         UIView.animate(withDuration: 0.5) { 
             self.albumContainerView.alpha = 1.0
             self.photoContainerView.alpha = 0.0
-            
             self.albumView.isHidden = false
             self.photoView.isHidden = true
         }
-        
-       
     }
     
     @IBAction func photoTapped(_ sender: Any) {
-        
         albumTapped = false
         photoTapped = true
         
         UIView.animate(withDuration: 0.5) {
             self.albumContainerView.alpha = 0.0
             self.photoContainerView.alpha = 1.0
-            
             self.albumView.isHidden = true
             self.photoView.isHidden = false
         }
     }
     
-    
-    
 
-
-    
-    
     
     @IBAction func unwindToMaster(segue:UIStoryboardSegue) { }
 

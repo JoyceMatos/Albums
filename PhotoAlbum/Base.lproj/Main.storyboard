@@ -157,7 +157,7 @@
                                             <outlet property="albumView" destination="HfJ-Rr-RSF" id="ZHW-pM-tv7"/>
                                             <outlet property="photoImageView" destination="vLJ-ag-5RZ" id="11i-Uf-8SO"/>
                                             <outlet property="photosLabel" destination="zWW-bg-FGL" id="Jym-uS-fHZ"/>
-                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="seguePhotosforAlbum" customClass="CollectionViewSegue" customModule="PhotoAlbum" customModuleProvider="target" action="showViewController:sender:" id="5W6-zH-ZZQ"/>
+                                            <segue destination="BYZ-38-t0r" kind="showDetail" identifier="showPhotos" customClass="CollectionViewSegue" customModule="PhotoAlbum" customModuleProvider="target" action="showViewController:sender:" id="5W6-zH-ZZQ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

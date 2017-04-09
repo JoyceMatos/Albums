@@ -75,7 +75,7 @@ class PhotoViewController: UIViewController {
     @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        if segue.identifier == SegueIdentifiers.showDetail {
             let destVC = segue.destination as! DetailViewController
             let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell)
             
@@ -100,7 +100,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.photoCell, for: indexPath) as! CollectionViewCell
         if cell.delegate == nil {
             cell.delegate = self
             cell.backgroundColor = UIColor.clear

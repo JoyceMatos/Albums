@@ -16,7 +16,6 @@ class DetailViewController: UIViewController {
     var photoID: Int?
     var photo: Photo?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +24,6 @@ class DetailViewController: UIViewController {
     }
     
     func configureViews() {
-        
         guard let selectedPhoto = photo else {
             return
         }
