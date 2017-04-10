@@ -27,6 +27,8 @@ final class Photo {
         self.thumbnailURLString = thumbnailURLString
     }
     
+    
+    // TODO: - Perform something similar in Image Manager
     func downloadImage(handler: @escaping (Bool) -> Void) {
         isDownloadingImage = true
         let session = URLSession.shared
@@ -35,8 +37,10 @@ final class Photo {
         session.dataTask(with: request, completionHandler: { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data,
-                    let newImage = UIImage(data: data)
-                    else { handler(false); return }
+                    let newImage = UIImage(data: data) else {
+                        handler(false)
+                        return
+                }
                 
                 self.image = newImage
                 handler(true)

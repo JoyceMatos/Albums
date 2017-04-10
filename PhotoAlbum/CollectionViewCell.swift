@@ -32,6 +32,8 @@ class CollectionViewCell: UICollectionViewCell {
             return
         }
         
+        
+        // TODO: - Once Image Manager is in place, check for photo id and album id
         if photo.image == nil && !photo.isDownloadingImage {
             photo.downloadImage(handler: { success in
                 if success {

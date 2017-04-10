@@ -8,31 +8,30 @@
 
 import Foundation
 
+typealias JSON = [String : Any]
+
 final class APIClient {
     
-    static func retrieveJSON(completion: @escaping ([[String: Any]]) -> Void) {
+    static func retrieveJSON(completion: @escaping ([JSON]?) -> Void) {
         
-        let urlString = APIDetails.baseURLString
-        guard let url = URL(string: urlString) else {
+        guard let url = URL(string: APIDetails.baseURLString) else {
+            completion(nil)
             return
         }
         
         let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, error) in
-                guard let data = data else  {
+        session.dataTask(with: url) { (data, response, error) in
+            guard let data = data,
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]] else  {
+                    completion(nil)
                     return
-                }
-                do {
-                    let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        completion(responseJSON)
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-        }
-        task.resume()
+            }
+        
+            DispatchQueue.global(qos: .userInitiated).async {
+                completion(responseJSON)
+            }
+        }.resume()
+        
     }
- 
     
 }

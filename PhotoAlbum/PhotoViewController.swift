@@ -26,6 +26,7 @@ class PhotoViewController: UIViewController {
     let sectionInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 10.0, right: 10.0) 
     var albumID: Int?
     var albumPhotos = [Photo]()
+    var allPhotos = [Photo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,18 +63,31 @@ class PhotoViewController: UIViewController {
     
     
     func retrievePhotos() {
-        self.store.getPhotos { (photos) in
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+        
+        store.getAlbums {
+            self.store.photos.removeAll()
+            for album in self.store.albums {
+                for photo in album.photos {
+                    self.store.photos.append(photo)
+                }
             }
+            self.collectionView.reloadData()
         }
+        
+        
+//        self.store.getPhotos { (photos) in
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }
     }
     
     func determinePhotoSource() {
         if albumPhotos.isEmpty {
             retrievePhotos()
         } else {
-            store.getAlbums {
+            store.getAlbums { _ in
+                self.collectionView.reloadData()
             }
         }
     }
@@ -157,8 +171,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
 }
-
-
 
 // MARK: - Collection View Cell Delegate
 extension PhotoViewController: PhotoCellDelegate {

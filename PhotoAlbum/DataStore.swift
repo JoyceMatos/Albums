@@ -15,10 +15,16 @@ class DataStore {
     var albums = [Album]()
     var albumDict = [Int: [Photo]]()
     
+    // TODO: - Remove this function
     func getPhotos(completion: @escaping ([Photo]) -> Void) {
         photos.removeAll()
         APIClient.retrieveJSON { (album) in
-            for photo in album {
+            
+            guard let albumArray = album else {
+                return
+            }
+            
+            for photo in albumArray {
                 let albumID = photo["albumId"] as! Int
                 let id = photo["id"] as! Int
                 let title = photo["title"] as! String
@@ -37,7 +43,12 @@ class DataStore {
         
         var albumPhotos = [Photo]()
         APIClient.retrieveJSON { (album) in
-            for photo in album {
+            
+            guard let albumArray = album else {
+                return
+            }
+            
+            for photo in albumArray {
                 let albumID = photo["albumId"] as! Int
                 let id = photo["id"] as! Int
                 let title = photo["title"] as! String
@@ -67,8 +78,7 @@ class DataStore {
             completion()
         }
     }
-    
-    
+
     
     
 }
