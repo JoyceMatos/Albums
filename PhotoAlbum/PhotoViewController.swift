@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol DisplayPhotos: class {
+    
+    func displayCount(_ albumPhotos: [Photo], allPhotos: [Photo]) -> Int
+    func displayPhoto(_ albumPhotos: [Photo], allPhotos: [Photo]) -> [Photo]
+    
+}
+
 class PhotoViewController: UIViewController {
     
     let store = DataStore.shared
@@ -16,7 +23,7 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     let refreshControl = UIRefreshControl()
     let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
-    let sectionInsets = UIEdgeInsets(top: 30.0, left: 10.0, bottom: 30.0, right: 10.0) // 50, 20
+    let sectionInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 10.0, right: 10.0) 
     var albumID: Int?
     var albumPhotos = [Photo]()
     
@@ -115,6 +122,8 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if cell.delegate == nil {
             cell.delegate = self
             cell.backgroundColor = UIColor.clear
+        
+
             
         }
         
