@@ -23,6 +23,7 @@ class AlbumViewController: UIViewController {
         fetchAlbums()
     }
     
+    // MARK: - Retrieve Data for DataSource Method
     func fetchAlbums() {
         store.getAlbums {
             DispatchQueue.main.async {

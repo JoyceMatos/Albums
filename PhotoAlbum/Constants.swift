@@ -8,18 +8,30 @@
 
 import Foundation
 
-//NOTE: - Update all files with these constants
-
 struct SegueIdentifiers {
     
     static let showDetail = "showDetail"
     static let showPhotos = "showPhotos"
-    
-    
+   
 }
 
 struct CellIdentifiers {
     
     static let photoCell = "photoCell"
     static let albumCell = "albumCell"
+    
 }
+
+struct APIDetails {
+    
+    static let baseURLString = "http://jsonplaceholder.typicode.com/photos"
+    
+}
+
+//enum ErrorMessage: String, Error {
+//    case noUrl = "Error - No URL found"
+//    case retrievingError = "Error retrieving data from the server"
+//    case uploadingError = "Error uploading data to the server"
+//    case updatingError = "Error updating data to the server"
+//    case deletingError = "Error deleting data from the server"
+//}

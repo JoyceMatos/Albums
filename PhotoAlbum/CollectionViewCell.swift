@@ -25,6 +25,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     weak var delegate: PhotoCellDelegate!
     
+    // MARK: - Image Method
     private func setupPhoto() {
         if photo.image != nil {
             image.image = photo.image

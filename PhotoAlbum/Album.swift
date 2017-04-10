@@ -14,8 +14,10 @@ struct Album {
     var photos: [Photo]
 }
 
+
+// NOTE: - Remove maybe?
 extension Album: Equatable {
-    
+
     static func == (lhs: Album, rhs: Album) -> Bool {
         return (lhs.albumID == rhs.albumID)
     }

@@ -13,8 +13,6 @@ import Foundation
 protocol DisplayPhotos: class {
     
     func displayCount(_ albumPhotos: [Photo], allPhotos: [Photo]) -> Int
-    
     func displayPhoto(_ albumPhotos: [Photo], allPhotos: [Photo]) -> [Photo]
 
-    
 }

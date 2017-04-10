@@ -12,35 +12,27 @@ final class APIClient {
     
     static func retrieveJSON(completion: @escaping ([[String: Any]]) -> Void) {
         
-        let urlString = "http://jsonplaceholder.typicode.com/photos"
+        let urlString = APIDetails.baseURLString
         guard let url = URL(string: urlString) else {
             return
         }
         
         let session = URLSession.shared
-
         let task = session.dataTask(with: url) { (data, response, error) in
                 guard let data = data else  {
                     return
                 }
-
                 do {
                     let responseJSON = try JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
                     DispatchQueue.global(qos: .userInitiated).async {
                         completion(responseJSON)
                     }
-
                 } catch {
                     print(error.localizedDescription)
                 }
-        
         }
         task.resume()
-        
     }
-
-
-    
-    
+ 
     
 }
