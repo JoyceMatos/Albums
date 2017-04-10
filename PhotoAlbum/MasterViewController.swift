@@ -35,8 +35,20 @@ class MasterViewController: UIViewController {
         albumTapped = true
         photoTapped = false
         
-        // NOTE: - Break animations down into functions
-        UIView.animate(withDuration: 0.5) { 
+        animateAlbumView()
+    }
+    
+    @IBAction func photoTapped(_ sender: Any) {
+        albumTapped = false
+        photoTapped = true
+        
+        animatePhotoView()
+    }
+    
+    // NOTE: - Combine animations into one function
+
+    func animateAlbumView() {
+        UIView.animate(withDuration: 0.5) {
             self.albumContainerView.alpha = 1.0
             self.photoContainerView.alpha = 0.0
             self.albumView.isHidden = false
@@ -44,10 +56,7 @@ class MasterViewController: UIViewController {
         }
     }
     
-    @IBAction func photoTapped(_ sender: Any) {
-        albumTapped = false
-        photoTapped = true
-        
+    func animatePhotoView() {
         UIView.animate(withDuration: 0.5) {
             self.albumContainerView.alpha = 0.0
             self.photoContainerView.alpha = 1.0
@@ -56,7 +65,6 @@ class MasterViewController: UIViewController {
         }
     }
     
-
     
     @IBAction func unwindToMaster(segue:UIStoryboardSegue) { }
 

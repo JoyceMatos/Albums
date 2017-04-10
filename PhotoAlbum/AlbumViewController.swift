@@ -20,8 +20,7 @@ class AlbumViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        fetchAlbums()  
-        
+        fetchAlbums()
     }
     
     func fetchAlbums() {
@@ -35,21 +34,16 @@ class AlbumViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifiers.showPhotos {
             let destVC = segue.destination as! PhotoViewController
-            let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
-            
-            // TODO: - Fix indexPAth.item
-            destVC.albumPhotos = store.albums[(indexPath?.item)!].photos
+            guard let indexPath = tableView.indexPath(for: sender as! UITableViewCell) else {
+                return
+            }
+            destVC.albumPhotos = store.albums[indexPath.row].photos
         }
     }
     
-    @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) {
-        
-        
-    }
-    
-    
 }
 
+// MARK: - TableView Methods
 extension AlbumViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -76,7 +70,6 @@ extension AlbumViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let currentCell = cell as! TableViewCell
-
         let photo = store.albums[indexPath.item].photos[0]
         currentCell.photo = photo
     }
@@ -88,18 +81,14 @@ extension AlbumViewController: AlbumCellDelegate {
     
     func albumCell(_ albumCell: TableViewCell, canDisplayPhoto photo: Photo) -> Bool {
         var visiblePhotos: Set<Int> = []
-
+        
         if let visibleIndexPaths = tableView.indexPathsForVisibleRows {
-        
-        
+            
             for indexPath in visibleIndexPaths {
                 let photoAtIndexPath = store.albums[indexPath.item].photos[0]
                 visiblePhotos.insert(photoAtIndexPath.id)
-
-        }
-        
+            }
         }
         return visiblePhotos.contains(photo.id)
-
-}
+    }
 }

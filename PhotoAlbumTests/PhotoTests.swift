@@ -20,7 +20,6 @@ class PhotoTests: XCTestCase {
     }
     
     func testPhotoInit() {
-        
         let photo = Photo(albumID: 3, id: 3, title: "Michael", urlString: "www.blah.com", thumbnailURLString: "nope")
         XCTAssertEqual(photo.albumID, 3, "Album ID Should equal 3 through its init function.")
         

@@ -23,13 +23,11 @@ class AlbumTests: XCTestCase {
     }
     
     func testAlbumInit() {
-
         let photos = [
         Photo(albumID: 57, id: 5, title: "photo1", urlString: "www.blah.com", thumbnailURLString: "www.blah.com"),
         Photo(albumID: 57, id: 7, title: "photo2", urlString: "www.blah.com", thumbnailURLString: "www.blah.com"),
         Photo(albumID: 57, id: 4, title: "photo3", urlString: "www.blah.com", thumbnailURLString: "www.blah.com")
         ]
-        
         
         let album = Album(albumID: 57, photos: photos)
         XCTAssertEqual(album.albumID, 57, "Album should be equal to 57")

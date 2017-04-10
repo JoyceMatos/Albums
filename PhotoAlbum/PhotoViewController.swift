@@ -20,7 +20,6 @@ class PhotoViewController: UIViewController {
     var albumID: Int?
     var albumPhotos = [Photo]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,25 +70,26 @@ class PhotoViewController: UIViewController {
         self.refreshControl.endRefreshing()
     }
     
-    
     @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifiers.showDetail {
             let destVC = segue.destination as! DetailViewController
-            let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell)
-            
-            // TODO: - Fix indexPAth.item
-                destVC.photo = displayPhoto(albumPhotos, allPhotos: store.photos)[(indexPath?.item)!]
+            guard let indexPath = collectionView.indexPath(for: sender as! UICollectionViewCell) else {
+                return
+            }
+            destVC.photo = displayPhoto(albumPhotos, allPhotos: store.photos)[indexPath.item]
         }
     }
     
     
 }
 
+// MARK: - CollectionView Methods
 extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
         return 1
     }
     
@@ -97,7 +97,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         return displayCount(albumPhotos, allPhotos: store.photos)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellIdentifiers.photoCell, for: indexPath) as! CollectionViewCell
@@ -110,7 +109,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         return cell
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
@@ -121,12 +119,11 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,insetForSectionAt section: Int) -> UIEdgeInsets {
-        
+
         return sectionInsets
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         let currentCell = cell as! CollectionViewCell
         let photo = displayPhoto(albumPhotos, allPhotos: store.photos)[indexPath.item]
         currentCell.photo = photo
