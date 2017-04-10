@@ -26,22 +26,33 @@ class PhotoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         
-       determinePhotoSource()
+        determinePhotoSource()
         configureViews()
         refresh()
         
     }
     
+    // MARK - View Method
     func configureViews() {
-        
         if albumPhotos.isEmpty {
             backButton.isHidden = true
-            
-            // TODO: - Adjust collectionview constraint
+            repositionCollectionView()
         } else {
             backButton.isHidden = false
         }
     }
+    
+    // NOTE: - Make collectionview better
+    func repositionCollectionView() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
+        collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
     
     func retrievePhotos() {
         self.store.getPhotos { (photos) in
@@ -59,7 +70,7 @@ class PhotoViewController: UIViewController {
             }
         }
     }
-    
+    // MARK: - Refresh Methods
     func refresh() {
         collectionView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(reloadCollectionView), for: .valueChanged)
@@ -70,6 +81,7 @@ class PhotoViewController: UIViewController {
         self.refreshControl.endRefreshing()
     }
     
+    // MARK: - Segue Methods
     @IBAction func unwindSegueToSelf(segue: UIStoryboardSegue) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -119,7 +131,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,insetForSectionAt section: Int) -> UIEdgeInsets {
-
+        
         return sectionInsets
     }
     
@@ -127,7 +139,7 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let currentCell = cell as! CollectionViewCell
         let photo = displayPhoto(albumPhotos, allPhotos: store.photos)[indexPath.item]
         currentCell.photo = photo
-
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -146,11 +158,11 @@ extension PhotoViewController: PhotoCellDelegate {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems
         
         var visiblePhotos: Set<Int> = []
-    
-            for indexPath in visibleIndexPaths {
-                let photoAtIndexPath = displayPhoto(albumPhotos, allPhotos: store.photos)[indexPath.item]
-                visiblePhotos.insert(photoAtIndexPath.id)
-            }
+        
+        for indexPath in visibleIndexPaths {
+            let photoAtIndexPath = displayPhoto(albumPhotos, allPhotos: store.photos)[indexPath.item]
+            visiblePhotos.insert(photoAtIndexPath.id)
+        }
         
         return visiblePhotos.contains(photo.id)
     }
@@ -175,7 +187,7 @@ extension PhotoViewController: DisplayPhotos {
             return albumPhotos
         }
     }
-
+    
 }
 
 
