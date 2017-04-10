@@ -27,6 +27,14 @@ final class Photo {
         self.thumbnailURLString = thumbnailURLString
     }
     
+    init(JSON: JSON) {
+        self.albumID = JSON["albumId"] as! Int
+        self.id = JSON["id"] as! Int
+        self.title = JSON["title"] as! String
+        self.urlString = JSON["url"] as! String
+        self.thumbnailURLString = JSON["thumbnailUrl"] as! String
+    }
+    
     
     // TODO: - Perform something similar in Image Manager
     func downloadImage(handler: @escaping (Bool) -> Void) {

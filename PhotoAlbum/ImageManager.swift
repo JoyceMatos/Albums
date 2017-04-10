@@ -11,7 +11,7 @@ import UIKit
 
 final class ImageManager {
     
-    var images: [Int : UIImage]!
+    var images: [Int: UIImage]!
     
     
 }

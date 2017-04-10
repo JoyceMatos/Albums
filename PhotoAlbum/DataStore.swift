@@ -15,7 +15,7 @@ class DataStore {
     var albums = [Album]()
     var albumDict = [Int: [Photo]]()
     
-    // TODO: - Remove this function
+    // TODO: - Remove this function, you are creating two sets of Photos arrays thats occupying space in memory
     func getPhotos(completion: @escaping ([Photo]) -> Void) {
         photos.removeAll()
         APIClient.retrieveJSON { (album) in
@@ -38,6 +38,7 @@ class DataStore {
     }
     
     func getAlbums(completion: @escaping () -> Void)  {
+//        photos.removeAll()
         albums.removeAll()
         albumDict.removeAll()
         
@@ -49,12 +50,7 @@ class DataStore {
             }
             
             for photo in albumArray {
-                let albumID = photo["albumId"] as! Int
-                let id = photo["id"] as! Int
-                let title = photo["title"] as! String
-                let url = photo["url"] as! String
-                let thumbnailURL = photo["thumbnailUrl"] as! String
-                let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURLString: thumbnailURL)
+                let photo = Photo(JSON: photo)
                 albumPhotos.append(photo)
             }
             

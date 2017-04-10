@@ -40,6 +40,7 @@ class PhotoViewController: UIViewController {
         
     }
     
+    
     // MARK - View Method
     func configureViews() {
         if albumPhotos.isEmpty {
@@ -63,30 +64,20 @@ class PhotoViewController: UIViewController {
     
     
     func retrievePhotos() {
-        
-        store.getAlbums {
-            self.store.photos.removeAll()
-            for album in self.store.albums {
-                for photo in album.photos {
-                    self.store.photos.append(photo)
-                }
+        self.store.getPhotos { (photos) in
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
-            self.collectionView.reloadData()
         }
-        
-        
-//        self.store.getPhotos { (photos) in
-//            DispatchQueue.main.async {
-//                self.collectionView.reloadData()
-//            }
-//        }
     }
     
+    // TODO: - Ternary Operators
     func determinePhotoSource() {
         if albumPhotos.isEmpty {
             retrievePhotos()
         } else {
             store.getAlbums { _ in
+                print(self.store.photos)
                 self.collectionView.reloadData()
             }
         }

@@ -13,12 +13,15 @@ class AlbumViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let store = DataStore.shared
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        
         
         fetchAlbums()
     }
@@ -31,6 +34,17 @@ class AlbumViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Refresh Methods
+//    func refresh() {
+//        tableView.refreshControl = refreshControl
+//        refreshControl.addTarget(self, action: #selector(reloadCollectionView), for: .valueChanged)
+//    }
+//    
+//    func reloadCollectionView() {
+//        self.tableView.reloadData()
+//        self.refreshControl.endRefreshing()
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifiers.showPhotos {
