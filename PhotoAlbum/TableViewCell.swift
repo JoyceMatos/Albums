@@ -19,7 +19,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var photosLabel: UILabel!
     @IBOutlet weak var albumView: UIView!
     @IBOutlet weak var photoImageView: UIImageView!
-    
+
     weak var delegate: AlbumCellDelegate!
     weak var photo: Photo! {
         didSet {

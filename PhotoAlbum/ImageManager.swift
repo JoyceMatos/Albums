@@ -11,7 +11,26 @@ import UIKit
 
 final class ImageManager {
     
-    var images: [Int: UIImage]!
+    var images: [Photo: UIImage]!
     
-    
+    // Download thumbnail
+//    func downloadImage(_ photo: Photo, handler: @escaping (Bool) -> Void) {
+//       // isDownloadingImage = true
+//        let session = URLSession.shared
+//        let url = URL(string: photo.thumbnailURLString)!
+//        let request = URLRequest(url: url)
+//        session.dataTask(with: request, completionHandler: { data, response, error in
+//            DispatchQueue.main.async {
+//                guard let data = data,
+//                    let newImage = UIImage(data: data) else {
+//                        handler(false)
+//                        return
+//                }
+//                
+//                self.image = newImage
+//                handler(true)
+//            }
+//        }).resume()
+//    }
+//
 }

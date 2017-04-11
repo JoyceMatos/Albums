@@ -21,8 +21,6 @@ class AlbumViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        
-        
         fetchAlbums()
     }
     

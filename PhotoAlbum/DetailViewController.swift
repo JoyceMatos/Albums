@@ -27,17 +27,18 @@ class DetailViewController: UIViewController {
         guard let selectedPhoto = photo else {
             return
         }
-        // MARK: - Load image
+        
+        //Load image
         imageView.image = loadImage(from: selectedPhoto.urlString)
         
-        // MARK: - Set up description label
+        //Set up description label
         descriptionLabel.sizeToFit()
         descriptionLabel.text = photo?.title
     }
     
     // NOTE: - Downloading may be okay since it will only happen once
     
-    // MARK: - Download Image
+    // TODO: - This operation should be executed in it's own network layer
     func loadImage(from imageURL: String) -> UIImage? {
         if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
             if data != nil {

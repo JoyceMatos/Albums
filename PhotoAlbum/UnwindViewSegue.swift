@@ -18,7 +18,6 @@ import UIKit
             src.view.transform = CGAffineTransform(translationX: 0, y: 0)
             
             UIView.animate(withDuration: 0.35, delay: 0.0, options: .curveEaseInOut, animations: {
-                
                 src.view.transform = CGAffineTransform(translationX: src.view.frame.size.width, y: 0)
             }, completion: { finished in
                 

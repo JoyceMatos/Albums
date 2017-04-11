@@ -51,7 +51,7 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    // NOTE: - Make collectionview better
+    // NOTE: - Reposition Collection View
     func repositionCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
@@ -62,7 +62,7 @@ class PhotoViewController: UIViewController {
         collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
-    
+    // MARK: - Fetch Data Source Methods
     func retrievePhotos() {
         self.store.getPhotos { (photos) in
             DispatchQueue.main.async {
@@ -71,17 +71,13 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    // TODO: - Ternary Operators
     func determinePhotoSource() {
-        if albumPhotos.isEmpty {
-            retrievePhotos()
-        } else {
-            store.getAlbums { _ in
-                print(self.store.photos)
-                self.collectionView.reloadData()
-            }
+        albumPhotos.isEmpty ? retrievePhotos() : store.getAlbums {
+            print(self.store.photos)
+            self.collectionView.reloadData()
         }
     }
+    
     // MARK: - Refresh Methods
     func refresh() {
         collectionView.refreshControl = refreshControl
@@ -127,9 +123,6 @@ extension PhotoViewController: UICollectionViewDelegate, UICollectionViewDataSou
         if cell.delegate == nil {
             cell.delegate = self
             cell.backgroundColor = UIColor.clear
-        
-
-            
         }
         
         return cell
@@ -185,6 +178,7 @@ extension PhotoViewController: PhotoCellDelegate {
 extension PhotoViewController: DisplayPhotos {
     
     func displayCount(_ albumPhotos: [Photo], allPhotos: [Photo]) -> Int {
+        
         if albumPhotos.isEmpty {
             return store.photos.count
         } else {

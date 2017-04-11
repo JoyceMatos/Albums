@@ -22,9 +22,9 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
-
     }
     
+    // MARK: - View Method
     func configureViews() {
         self.albumContainerView.alpha = 1.0
         self.photoContainerView.alpha = 0.0
@@ -32,6 +32,7 @@ class MasterViewController: UIViewController {
         self.photoView.isHidden = true
     }
     
+    // MARK: - Action Methods
     @IBAction func albumTapped(_ sender: Any) {
         albumTapped = true
         photoTapped = false
@@ -46,8 +47,7 @@ class MasterViewController: UIViewController {
         animatePhotoView()
     }
     
-    // NOTE: - Combine animations into one function
-
+    // MARK: - Animate Container Views
     func animateAlbumView() {
         UIView.animate(withDuration: 0.5) {
             self.albumContainerView.alpha = 1.0
@@ -66,7 +66,7 @@ class MasterViewController: UIViewController {
         }
     }
     
-    
+    // MARK: - Segue
     @IBAction func unwindToMaster(segue:UIStoryboardSegue) { }
 
     
