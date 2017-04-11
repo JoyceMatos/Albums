@@ -8,6 +8,8 @@
 
 import UIKit
 
+//NOTE: - I was hoping to include gesture recognizers to make the detailed photos more interactive and allow the users to swipe to dismiss the view. 
+
 class DetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -36,9 +38,8 @@ class DetailViewController: UIViewController {
         descriptionLabel.text = photo?.title
     }
     
-    // NOTE: - Downloading may be okay since it will only happen once
     
-    // TODO: - This operation should be executed in it's own network layer
+    // NOTE: - This operation should be executed in it's own network layer (ImageManager)
     func loadImage(from imageURL: String) -> UIImage? {
         if let url = URL(string: imageURL), let data = try? Data(contentsOf: url) {
             if data != nil {

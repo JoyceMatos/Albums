@@ -15,7 +15,7 @@ class DataStore {
     var albums = [Album]()
     var albumDict = [Int: [Photo]]()
     
-    // TODO: - Remove this function, you are creating two sets of Photos arrays thats occupying space in memory
+    // TODO: - Remove this function because it is storing two arrays of the same photos in memory.
     func getPhotos(completion: @escaping ([Photo]) -> Void) {
         photos.removeAll()
         APIClient.retrieveJSON { (album) in
@@ -25,14 +25,10 @@ class DataStore {
             }
             
             for photo in albumArray {
-                let albumID = photo["albumId"] as! Int
-                let id = photo["id"] as! Int
-                let title = photo["title"] as! String
-                let url = photo["url"] as! String
-                let thumbnailURL = photo["thumbnailUrl"] as! String
-                let photo = Photo(albumID: albumID, id: id, title: title, urlString: url, thumbnailURLString: thumbnailURL)
+                let photo = Photo(JSON: photo)
                 self.photos.append(photo)
             }
+            
             completion(self.photos)
         }
     }
@@ -43,17 +39,20 @@ class DataStore {
         albumDict.removeAll()
         
         var albumPhotos = [Photo]()
+        albumPhotos.removeAll()
         APIClient.retrieveJSON { (album) in
             
             guard let albumArray = album else {
                 return
             }
             
+            // Create an array of all photos
             for photo in albumArray {
                 let photo = Photo(JSON: photo)
                 albumPhotos.append(photo)
             }
             
+            // Create a dictionary of [Album: [Photo]
             for photo in albumPhotos {
                 let key = photo.albumID
                 let value = [photo]
@@ -65,11 +64,13 @@ class DataStore {
                 }
             }
             
+            // Populate data models from the dictionary and store all Album objects
             for object in self.albumDict {
                 let album = Album(albumID: object.key, photos: object.value)
                 self.albums.append(album)
             }
             
+            // Sort album objects by ID number
             self.albums.sort(by: { $0.albumID < $1.albumID })
             completion()
         }

@@ -26,15 +26,14 @@ class CollectionViewCell: UICollectionViewCell {
     weak var delegate: PhotoCellDelegate!
     
     // MARK: - Image Method
+    // NOTE: - Once networking layer (ImageManager) is created, this will call on this layer and retrieve the image from the dictionary
     private func setupPhoto() {
         if photo.image != nil {
             image.image = photo.image
             return
         }
         
-        
-        // TODO: - Once Image Manager is in place, check for photo id and album id
-        if photo.image == nil && !photo.isDownloadingImage {
+            if photo.image == nil && !photo.isDownloadingImage {
             photo.downloadImage(handler: { success in
                 if success {
                     guard self.delegate.photoCell(self, canDisplayPhoto: self.photo) else { return }

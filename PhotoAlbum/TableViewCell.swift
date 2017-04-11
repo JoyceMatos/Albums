@@ -35,6 +35,8 @@ class TableViewCell: UITableViewCell {
         photoImageView.image = nil
     }
     
+    // MARK: - Image Method
+    // NOTE: - Once networking layer (ImageManager) is created, this will call on this layer and retrieve the image from the dictionary
     private func setupPhoto() {
         if photo.image != nil {
             photoImageView.image = photo.image

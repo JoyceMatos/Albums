@@ -12,7 +12,7 @@ struct SegueIdentifiers {
     
     static let showDetail = "showDetail"
     static let showPhotos = "showPhotos"
-   
+    
 }
 
 struct CellIdentifiers {
@@ -25,5 +25,12 @@ struct CellIdentifiers {
 struct APIDetails {
     
     static let baseURLString = "http://jsonplaceholder.typicode.com/photos"
+    
+}
+
+enum PhotoType {
+    
+    case thumbnail
+    case detail
     
 }

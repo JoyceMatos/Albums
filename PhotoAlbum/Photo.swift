@@ -22,14 +22,6 @@ final class Photo {
         return id.hashValue
     }
     
-    init(albumID: Int, id: Int, title: String, urlString: String, thumbnailURLString: String) {
-        self.albumID = albumID
-        self.id = id
-        self.title = title
-        self.urlString = urlString
-        self.thumbnailURLString = thumbnailURLString
-    }
-    
     init(JSON: JSON) {
         self.albumID = JSON["albumId"] as! Int
         self.id = JSON["id"] as! Int
@@ -62,10 +54,10 @@ final class Photo {
     
 }
 
+// NOTE: - This extension was created with the intension of making the Photos hashable so that I can create a dictionary of [Photo: Image] in the networking layer. Essentially, this dictionary would be used to populate the data models with the images without having to download the images themselves.
 extension Photo: Hashable {
-    
     static func == (lhs: Photo, rhs: Photo) -> Bool {
-        return (lhs.id == rhs.id)
+        return lhs.id == rhs.id && lhs.albumID == rhs.albumID
     }
     
 }

@@ -23,12 +23,27 @@ class AlbumTests: XCTestCase {
     }
     
     func testAlbumInit() {
-        let photos = [
-        Photo(albumID: 57, id: 5, title: "photo1", urlString: "www.blah.com", thumbnailURLString: "www.blah.com"),
-        Photo(albumID: 57, id: 7, title: "photo2", urlString: "www.blah.com", thumbnailURLString: "www.blah.com"),
-        Photo(albumID: 57, id: 4, title: "photo3", urlString: "www.blah.com", thumbnailURLString: "www.blah.com")
-        ]
         
+        let json1: [String: Any] = [
+            "albumId" : 57,
+            "id": 5,
+            "title": "This is my title",
+            "url": "http://placehold.it/150/121fa4",
+            "thumbnailUrl": "http://placehold.it/150/121fa4"]
+        let json2: [String: Any] = [
+            "albumId" : 57,
+            "id": 9,
+            "title": "This is my title",
+            "url": "http://placehold.it/150/121fa4",
+            "thumbnailUrl": "http://placehold.it/150/121fa4"]
+        let json3: [String: Any] = [
+            "albumId" : 57,
+            "id": 43,
+            "title": "This is my title",
+            "url": "http://placehold.it/150/121fa4",
+            "thumbnailUrl": "http://placehold.it/150/121fa4"]
+        
+        let photos = [Photo(JSON: json1), Photo(JSON: json2), Photo(JSON: json3)]
         let album = Album(albumID: 57, photos: photos)
         XCTAssertEqual(album.albumID, 57, "Album should be equal to 57")
     }

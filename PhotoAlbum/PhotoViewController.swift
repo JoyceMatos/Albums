@@ -51,7 +51,7 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    // NOTE: - Reposition Collection View
+    // NOTE: - This function repositions the collection view when photos of the same album are being viewed
     func repositionCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true

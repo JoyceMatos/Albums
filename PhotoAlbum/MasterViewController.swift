@@ -22,6 +22,7 @@ class MasterViewController: UIViewController {
         super.viewDidLoad()
         
         configureViews()
+        
     }
     
     // MARK: - View Method

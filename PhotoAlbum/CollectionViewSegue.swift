@@ -12,7 +12,6 @@ class CollectionViewSegue: UIStoryboardSegue {
     
     
     override func perform() {
-        
         let src = self.source as UIViewController
         let dst = self.destination as UIViewController
         

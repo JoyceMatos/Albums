@@ -22,6 +22,7 @@ class AlbumViewController: UIViewController {
         tableView.dataSource = self
         
         fetchAlbums()
+        refresh()
     }
     
     // MARK: - Retrieve Data for DataSource Method
@@ -34,16 +35,17 @@ class AlbumViewController: UIViewController {
     }
     
     // MARK: - Refresh Methods
-//    func refresh() {
-//        tableView.refreshControl = refreshControl
-//        refreshControl.addTarget(self, action: #selector(reloadCollectionView), for: .valueChanged)
-//    }
-//    
-//    func reloadCollectionView() {
-//        self.tableView.reloadData()
-//        self.refreshControl.endRefreshing()
-//    }
+    func refresh() {
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(reloadTableView), for: .valueChanged)
+    }
     
+    func reloadTableView() {
+        self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+    
+    // MARK: - Segue Method
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIdentifiers.showPhotos {
             let destVC = segue.destination as! PhotoViewController
@@ -60,10 +62,12 @@ class AlbumViewController: UIViewController {
 extension AlbumViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return store.albums.count
     }
     
