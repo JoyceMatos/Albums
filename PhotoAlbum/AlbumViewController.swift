@@ -77,6 +77,9 @@ extension AlbumViewController: UITableViewDelegate, UITableViewDataSource {
         cell.albumLabel.text = "Album \(album.albumID)"
         cell.photosLabel.text = "\(album.photos.count) Photos"
         cell.contentView.backgroundColor = UIColor.clear
+        cell.albumView.layer.borderColor = UIColor.gray.cgColor
+        cell.albumView.layer.borderWidth = 0.5
+        
         
         return cell
     }
