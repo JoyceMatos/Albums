@@ -12,10 +12,11 @@ struct Album {
     
     let albumID: Int
     var photos: [Photo]
+    
 }
 
 
-// NOTE: - Remove maybe?
+// NOTE: - This extension is not used, but it was created to make Album equatable so that I can compare ablums when I refactor the getAlbums() in the DataStore
 extension Album: Equatable {
 
     static func == (lhs: Album, rhs: Album) -> Bool {

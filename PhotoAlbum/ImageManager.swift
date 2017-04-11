@@ -14,12 +14,13 @@ import UIKit
 
 final class ImageManager {
     
-    let shared = ImageManager()
+    static let shared = ImageManager()
     let store = DataStore.shared
     var thumbnailImages: [Photo: UIImage]!
     var detailImages: [Photo: UIImage]!
     
     func downloadImage(_ photo: Photo, photoType: PhotoType, handler: @escaping (Bool) -> Void) {
+        photo.isDownloadingImage = true
         let session = URLSession.shared
         var urlString = String()
         
@@ -52,13 +53,6 @@ final class ImageManager {
                 
             }
         }).resume()
-        
-        for photo in thumbnailImages {
-            
-            print("This photo is in album#: \(photo.key.albumID), photo: \(photo.key.id)")
-        }
-        
-        
     }
     
 }

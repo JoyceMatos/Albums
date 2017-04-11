@@ -25,12 +25,11 @@ final class APIClient {
                     completion(nil)
                     return
             }
-        
+            
             DispatchQueue.global(qos: .userInitiated).async {
                 completion(responseJSON)
             }
-        }.resume()
-        
+            }.resume()
     }
     
 }

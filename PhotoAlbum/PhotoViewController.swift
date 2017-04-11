@@ -23,7 +23,7 @@ class PhotoViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     let refreshControl = UIRefreshControl()
     let itemsPerRow: CGFloat = 3 // Specify CGFloat or it will be a double
-    let sectionInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 10.0, right: 10.0) 
+    let sectionInsets = UIEdgeInsets(top: 5.0, left: 10.0, bottom: 10.0, right: 10.0)
     var albumID: Int?
     var albumPhotos = [Photo]()
     var allPhotos = [Photo]()
@@ -51,7 +51,7 @@ class PhotoViewController: UIViewController {
         }
     }
     
-    // NOTE: - This function repositions the collection view when photos of the same album are being viewed
+    // NOTE: - This function repositions the collection view when photos of the same album are being viewed. Some of these constraints have to be updated so that they won't interfere with the previous constraints on storyboard, ie: back button
     func repositionCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1).isActive = true
@@ -73,7 +73,6 @@ class PhotoViewController: UIViewController {
     
     func determinePhotoSource() {
         albumPhotos.isEmpty ? retrievePhotos() : store.getAlbums {
-            print(self.store.photos)
             self.collectionView.reloadData()
         }
     }
@@ -178,7 +177,6 @@ extension PhotoViewController: PhotoCellDelegate {
 extension PhotoViewController: DisplayPhotos {
     
     func displayCount(_ albumPhotos: [Photo], allPhotos: [Photo]) -> Int {
-        
         if albumPhotos.isEmpty {
             return store.photos.count
         } else {

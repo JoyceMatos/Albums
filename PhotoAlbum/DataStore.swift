@@ -15,11 +15,10 @@ class DataStore {
     var albums = [Album]()
     var albumDict = [Int: [Photo]]()
     
-    // TODO: - Remove this function because it is storing two arrays of the same photos in memory.
+    // NOTE: - This function should be removed because it is storing two arrays of the same photos in memory. This is essentially doing what getAlbums() is doing.
     func getPhotos(completion: @escaping ([Photo]) -> Void) {
         photos.removeAll()
         APIClient.retrieveJSON { (album) in
-            
             guard let albumArray = album else {
                 return
             }
@@ -33,8 +32,8 @@ class DataStore {
         }
     }
     
+    // NOTE: - This method can be refactored and perhaps use some high order function to perform these operations
     func getAlbums(completion: @escaping () -> Void)  {
-//        photos.removeAll()
         albums.removeAll()
         albumDict.removeAll()
         
@@ -75,7 +74,7 @@ class DataStore {
             completion()
         }
     }
-
+    
     
     
 }

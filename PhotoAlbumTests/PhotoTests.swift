@@ -20,7 +20,6 @@ class PhotoTests: XCTestCase {
     }
     
     func testPhotoInit() {
-        
         let json: [String: Any] = [
             "albumId" : 1,
             "id": 5,
@@ -30,12 +29,8 @@ class PhotoTests: XCTestCase {
         
         let photo = Photo(JSON: json)
         XCTAssertEqual(photo.id, 5, "Photo id Should equal 5 through its init function.")
-        
-        
-        
-        
     }
     
-  
-   
+    
+    
 }

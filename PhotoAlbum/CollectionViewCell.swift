@@ -33,7 +33,7 @@ class CollectionViewCell: UICollectionViewCell {
             return
         }
         
-            if photo.image == nil && !photo.isDownloadingImage {
+        if photo.image == nil && !photo.isDownloadingImage {
             photo.downloadImage(handler: { success in
                 if success {
                     guard self.delegate.photoCell(self, canDisplayPhoto: self.photo) else { return }
@@ -43,7 +43,7 @@ class CollectionViewCell: UICollectionViewCell {
                         self.image.alpha = 1.0
                     })
                 } else {
-                    // TODO: Give it default image maybe?
+                    self.image.backgroundColor = UIColor.gray
                 }
             })
         }

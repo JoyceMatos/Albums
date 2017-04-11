@@ -31,7 +31,7 @@ final class Photo {
     }
     
     
-    // TODO: - Model should not handle this information. Extract functionality and perform any downloads in a networking layer
+    // NOTE: - Model should not handle this information. Extract functionality and perform any downloads in a networking layer
     func downloadImage(handler: @escaping (Bool) -> Void) {
         isDownloadingImage = true
         let session = URLSession.shared

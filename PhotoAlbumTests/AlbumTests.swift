@@ -23,7 +23,6 @@ class AlbumTests: XCTestCase {
     }
     
     func testAlbumInit() {
-        
         let json1: [String: Any] = [
             "albumId" : 57,
             "id": 5,
